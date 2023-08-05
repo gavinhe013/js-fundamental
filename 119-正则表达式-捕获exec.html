@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // reg.exec(目标字符串) 用来捕获目标字符串中符合正则规则的字符串
+
+        var reg = /\d{3}/
+        console.log(reg.exec('abc')) // null
+        console.log(reg.exec("aa123aa")); // ['123', index: 2, input: 'aa123aa', groups: undefined] 数组
+
+        var datestr = "time is 2029-01-01"
+        // 需要2029/01/01
+        var reg1 = /\d{4}-\d{1,2}-\d{1,2}/
+        var newdatestr = reg1.exec(datestr)[0].split('-').join('/')
+        console.log(newdatestr)
+
+
+        // 标示符 g i
+
+        // g 全局匹配 global
+        var datestr1 = "time is from 2029-01-01 12:20:20 to 2029-11-01 12:20:20"
+        // 需要2029/01/01 - 2029/11/01
+        var reg2 = /\d{4}-\d{1,2}-\d{1,2}/
+        
+        var newdatestr_1a = reg2.exec(datestr1)[0].split('-').join('/') // 因为设置了g，所以每次执行都会从上次匹配的位置开始匹配
+        var newdatestr_1b = reg2.exec(datestr1)[0].split('-').join('/') // 可设置while循环，如果获取到null循环停止
+        console.log(newdatestr_1a + '-' + newdatestr_1b);
+
+        // 不加括号时捕获的是 ['2029-01-01', index: 13, input: 'time is from 2029-01-01 12:20:20 to 2029-11-01 12:20:20', groups: undefined]
+        var reg3 = /(\d{4})-(\d{1,2})-(\d{1,2})/g
+        console.log(reg3.exec(datestr1))
+        // 第0项整体部分不变，但是加了括号之后，后面会实现单独捕获 ['2029-01-01', '2029', '01', '01', index: 13, input: 'time is from 2029-01-01 12:20:20 to 2029-11-01 12:20:20', groups: undefined]
+    
+        
+        // i 忽略大小写 ignore
+        var myreg = /[a-z]/i
+        console.log(myreg.exec('AA')) // ['A', index: 0, input: 'AA', groups: undefined]
+        console.log(myreg.test('AA')) // true
+
+        // //ig 忽略大小写且全局
+    </script>
+</body>
+
+</html>

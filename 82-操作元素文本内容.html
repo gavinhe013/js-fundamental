@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        hello world
+        <div>alice</div>
+    </div>
+
+    <input type="text" id="username" value="hello">
+
+    <select name="" id="select">
+        <option value="1">1111</option>
+        <option value="2" selected>2222</option>
+        <option value="3">3333</option>
+    </select>
+
+
+    <script>
+        // innerHTML 获取元素中的内容
+        console.log(box.innerHTML)
+        /* 
+            hello world
+            <div>alice</div>
+        */
+        // box.innerHTML = "<h1>11111111</h1>" // 覆盖之前box中的内容，且可以解析html标签
+
+
+        // innerText 获取元素中的纯文本内容
+        console.log(box.innerText)
+        /* 
+            hello world
+            alice
+        */
+        box.innerText = "<h1>11111111</h1>" // 覆盖之前box中的内容, 但是不解析html标签
+        /*
+            页面中显示  
+            <h1>11111111</h1>
+        */
+
+
+        // value 获取元素中的value属性值, text类型input中的value属性值就是用户输入的内容
+        // 一般只存在于表单元素中
+        console.log(username.value) // hello
+        username.value = "2222222"  // 此时页面中的input框中的内容就是2222222
+
+
+        console.log(select.value); // 2 获取select中被选中的option的value属性值, 如果没有被选中的option，那么就是undefined
+        select.value = "3" // 设置select中被选中的option的value属性值为3，此时页面中的select中被选中的option就是3333
+    </script>
+</body>
+</html>

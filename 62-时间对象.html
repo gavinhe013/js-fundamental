@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // Date 时间对象
+        
+        // 获取当前时间
+        var date = new Date()
+        console.log(date, typeof date); // 自动转成字符串输出 Thu May 18 2023 06:40:41 GMT+1000 (澳大利亚东部标准时间) object
+
+        // new Date传参
+
+        // 1个参数 new Date(毫秒)
+        var date1 = new Date(1000) // 1000毫秒
+        console.log(date1); // Thu Jan 01 1970 10:00:01 GMT+1000 (澳大利亚东部标准时间)
+        // 在 Jan 01 1970 00:00:00 GMT+0 基础上增加多少毫秒
+        // 后端传过来一个毫秒数，因为后端存时间存的是距起始时间的毫秒数，所以后端传过来毫秒后，用 new Date(毫秒)换成当前日期时间
+
+        // 2个参数 new Date(year, month) y年m月1日 00:00:00 
+        // 这里的month取值是[0,11] 对应1-12月，起始为0
+        var date2 = new Date(2023, 4)
+        console.log(date2); // Mon May 01 2023 00:00:00 GMT+1000 (澳大利亚东部标准时间)
+
+        // 3个参数 new Date(year, month, day) y年m月d日 00:00:00
+        // 注意： day取值从1开始，和month不一样
+        var date3 = new Date(2023, 4, 3)
+        console.log(date3); // Wed May 03 2023 00:00:00 GMT+1000 (澳大利亚东部标准时间)
+
+        // new Date(year, month, day, hour, minute, second) y年m月d日 h:m:s
+        var date4 = new Date(20023, 4, 3, 10, 10, 10)
+        console.log(date4); // Wed May 03 20023 10:10:10 GMT+1000 (澳大利亚东部标准时间)
+
+        // new Date(datetime_str)
+        // datetime_str 格式为 "yyyy-mm-dd hh:mm:ss" 或者 "yyyy/mm/dd hh:mm:ss"
+        var date5 = new Date("2023-10-10 10:10:10")
+        console.log(date5); // Tue Oct 10 2023 10:10:10 GMT+1100 (澳大利亚东部夏令时间)
+        var date6 = new Date("2023/10/10 10:10:10")
+        console.log(date6); // Tue Oct 10 2023 10:10:10 GMT+1100 (澳大利亚东部夏令时间)
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./152-util.js"></script>
+    <script>
+        pajax({
+            url: "http://localhost:3000/news",
+            data: {
+                author: "alice"
+            }
+        }).then(res => {
+            console.log(res[0]);
+            // 要return一个promise对象，才能继续链式调用
+            return pajax({
+                url: "http://localhost:3000/comments",
+                data: {
+                    newsId: res[0].id
+                }
+            })
+        }).then(res => {
+            console.log("success", res);
+            // return pajax 继续返回一个promise对象，就可以继续链式调用
+        }).catch(err => {
+            // 只需要在最后一个catch中处理错误就可以了，统一处理
+            console.log("error", err);
+        })
+    </script>
+</body>
+
+</html>

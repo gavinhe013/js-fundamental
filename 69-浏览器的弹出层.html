@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <button id="btn">click</button>
+
+
+    <script>
+        // alert 弹出提示内容
+
+        // btn.onclick = function() {
+        //     setTimeout(function() {
+        //         alert("hello")
+        //     }, 2000)
+        // }
+
+
+        // confirm 询问框
+
+        // btn.onclick = function() {
+        //     var res = confirm("确定删除吗")
+        //     console.log(res); // true/false
+        //     if (res) {
+                
+        //     } else {}
+        // }
+
+
+        // prompt 输入框
+        // btn.onclick = function() {
+        //     var username = prompt('请输入用户名')
+        //     console.log(res); // 字符串 username, 如果什么也没输入就是null
+        // }
+
+
+        // 此类用法会阻塞代码执行
+        btn.onclick = function() {
+            alert('11111') // 如果在此步如果不点掉，就会阻塞后面的代码执行，因为js单线程
+            console.log('结束')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+
+        #box2 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        #child {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">click</button>
+
+    <button id="btn2">mouse</button>
+
+    <div id="box">mousemove</div>
+
+    <div id="box2">
+        <div id="child"></div>
+    </div>
+    <script>
+        // 鼠标事件 
+        // click 单击触发
+        // dblclick 双击触发
+        btn.onclick = function() {
+            console.log("单击触发");
+        }
+
+        btn.ondblclick = function() {
+            console.log("双击触发");
+        }
+
+        // contextmenu 右键单击触发
+        btn.oncontextmenu = function() {
+            console.log("右键单击触发, 自定义右键菜单");
+        }
+
+        // mousedown 鼠标按下触发
+        // mousemove 鼠标在目标节点范围内移动触发
+        // mouseup 鼠标抬起触发 
+        btn2.onmousedown = function() {
+            console.log("鼠标按下触发");
+        }
+
+        box.onmousemove = function() {
+            console.log("鼠标在目标节点内移动触发");
+        }
+
+        btn2.onmouseup = function() {
+            console.log("鼠标抬起触发");
+        }
+
+        // 这一组会在目标节点的子节点上也触发
+        // mouseover 移入触发
+        // mouseout 移出触发
+        box2.onmouseover = function() {
+            console.log("移入");
+        }
+
+        box2.onmouseout = function() {
+            console.log("移出");
+        }
+        
+        // 这一组不会在目标节点的子节点上触发
+        // mouseenter 移入
+        // mouseleave 移出
+        box2.onmouseenter = function() {
+            console.log("移入");
+        }
+
+        box2.onmouseleave = function() {
+            console.log("移出");
+        }
+    </script>
+</body>
+</html>

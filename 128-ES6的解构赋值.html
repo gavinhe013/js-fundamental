@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 解构赋值
+        // 快速的从对象喝数组中获取里面的成员
+
+        var arr = ["alice", "bob", "cindy"]
+
+
+        // 结构赋值
+        let [a, b, c] = arr // 获取arr中所有元素
+        console.log(a, b, c); // alice bob cindy
+        let [x] = arr // 获取arr中第一个元素
+        console.log(x); // alice
+
+
+        // 交换两个变量的值,不需要第三个变量, 用解构赋值，但是只能用var定义变量，因为不能重复定义变量
+        var num1 = 10
+        var num2 = 20
+
+        var [num2, num1] = [num1, num2]
+        console.log(num1, num2); // 20 10
+
+
+        var arr2 = [1, 2, [3, 4, [5]]]  // 多维数组
+        console.log(arr2[2][2][0]); // 5
+        // 按照结构进行结构赋值
+        var [x1, x2, [x3, x4, [x5]]] = arr2
+        console.log(x5); // 5
+
+
+
+        // 对象结构赋值
+        // var obj = {
+        //     name: "alice",
+        //     age: 100,
+        //     location: "beijing"
+        // }
+        // // 如果想要修改变量名，可以在变量名后面加冒号，然后再写新的变量名
+        // let { name, age:myage, location: mylocation } = obj // 此处因为用let定义变量，默认的location是const，表示地址栏信息，所以需要修改变量名，否则会报错
+        // // 如果使用了额自定义的变量名，那么一定要使用自定义的变量名，否则会报错not defined
+        // // 原理是按照一样的key去获取值，然后赋值给变量，所以如果有自定义的变量名，那么就按照自定义的变量名去获取值
+        // document.write(name) // alice
+
+        // document.write(age) // 报错 age is not defined
+        // document.write(myage) // 100
+
+        // document.write(mylocation) // beijing  
+        
+        
+
+        // 复杂对象的解构赋值
+        var obj2 = {
+            name: "bob",
+            age:20,
+            location: {
+                state: "nsw",
+                city: "sydney"
+            },
+            hobby: ["basketball", "football", "swimming"]
+        }
+
+        var {
+            name,
+            age,
+            location: {
+                state,
+                city
+            },
+            hobby: [h1, h2, h3]
+        } = obj2
+
+        console.log(name, age, state, city, h1, h2, h3); // bob 20 nsw sydney basketball football swimming
+    </script>
+</body>
+
+</html>

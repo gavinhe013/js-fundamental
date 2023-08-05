@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <button id="btn1">清除定时器-延时</button>
+    <button id="btn2">清除定时器-间隔</button>
+
+    <script>
+        // 倒计时定时器
+        // 注册倒计时定时器 setTimeout(回调函数，延迟多久之后执行回调函数)  延迟为毫秒数
+        var time1 = setTimeout(function() {
+            console.log("alice");
+        }, 2000) // 结果相当于延迟2秒执行输出结果，且仅在延迟时间之后执行一次回调函数
+
+        // 间隔定时器
+        // 注册间隔定时器
+        var time2 = setInterval(function() {
+            console.log(new Date());
+        }, 1000) // 结果相当于每隔1秒执行一次输出结果，回调函数每隔一定时间之后执行一次
+
+
+        // 定时器的返回值代表的是注册的顺序的数字，从上到下
+        console.log(time1, time2); // 1 2
+
+
+        // clearTimeout(time1) 停掉第一个定时器，且定时器为倒计时定时器
+        // clearInterval(time2) 停掉第二个定时器，且定时器为间隔定时器
+
+        // 直接通过id，拿到button对象
+        console.log(btn1, btn2)
+        // .onclick 通过点击触发函数
+        btn1.onclick = function() {
+            console.log("btn1 click");
+
+            clearTimeout(time1) // 点击按钮后，停掉延迟定时器，如果在延迟之前停掉，则不会执行定时器的回调函数
+        }
+
+        btn2.onclick = function() {
+            console.log("btn2 click");
+
+            clearInterval(time2) // 点击按钮后，停掉间隔定时器，间隔一段时间后不再执行定时器的回调函数
+        }
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">hello world<!-- alice --><div>11111</div></div>
+
+    <script>
+        var obox = document.querySelector(".box")
+        
+
+        // nodeType 节点类型
+        // nodeType: 1 元素节点 2 属性节点 3 文本节点 8 注释节点
+        for (var i=0;i<obox.childNodes.length;i++) {
+            // console.log(obox.childNodes[i].nodeType);
+                /* 
+                    3 文本节点
+                    8 注释节点
+                    1 元素节点
+                */
+
+            // console.log(obox.childNodes[i].nodeName);
+                /* 
+                    #text
+                    #comment
+                    DIV
+                */
+
+            console.log(obox.childNodes[i].nodeValue);
+                /* 
+                    hello world
+                    alice
+                    null  div标签没有value
+                */
+                
+        }
+
+        console.log(obox.attributes[0].nodeType) // 2 属性节点
+        console.log(obox.attributes[0].nodeName) // class;
+        console.log(obox.attributes[0].nodeValue) // box;
+
+
+
+
+    </script>
+</body>
+</html>

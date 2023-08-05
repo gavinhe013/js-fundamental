@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 字面量创建string
+        var str1 = 'hello'
+        console.log(str1); // hello
+        console.log(str1 + ' world'); // hello world 
+
+        // 构造函数创建string
+        var str2 = new String('hello')
+        console.log(str2); // Stirng {'hello'} 0:'h' 1:'e' 2:'l' 3:'l' 4:'o' 对象结果
+        console.log(str2 + ' world'); // hello world 进行拼接之后是字符串结果
+
+        console.log(str1.length); // 5
+
+        // length 只读
+        str1.length = 0
+        console.log(str1); // 5 不会清空
+
+        // 索引 只读
+        console.log(str1[0]); // h
+        str1[0] = "a"
+        console.log(str1[0]); // h
+
+        // 遍历
+        for (var i = 0; i < str1.length; i++) {
+            console.log(i, str1[i]);    //0 'h' 1 'e' 2 'l' 3 'l' 4 'o'
+        }
+
+        // 复制
+        var str = str1
+        str = "aaa"
+        console.log(str, str1); // aaa hello string是简单类型，不会影响原变量的值
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // form标签的method属性，有两个值，get post
+        // get：把数据放在url后面，会显示在地址栏上，明文显示内容，不安全，数据量小，不超过2kb
+        // post：把数据放在请求体里，不会显示在地址栏上，安全，数据量大，不限制
+
+        // ajax
+        /* 
+            请求方式种类
+            根据后端接口的要求，来决定使用哪种请求方式
+
+            get 偏向获取数据
+            post 偏向提交数据
+            put 偏向更新 （全部） 会覆盖原来的数据
+            delete 偏向删除信息
+
+            patch 偏向部分修改，只修改一部分数据
+
+            head 偏向获取服务器头部信息
+            options 偏向获取服务器设备信息
+            connect 保留请求方式 可以开启与所请求资源之间的双向沟通的通道
+        */
+
+        /* 
+            nodejs - json-server 模拟接口
+
+            在terminal中输入以下命令
+
+            $ npm install json-server -g
+            安装json-server, -g表示全局安装，安装后可以在任意目录使用json-server命令
+            json-server 基于一个json文件就可以创建很多的后端模拟接口
+
+            $ json-server .\145-test.json --watch
+            可以在浏览器中输入接口地址，可以看到json文件中的数据
+
+            --watch表示实时监听json文件的变化，如果json文件发生变化，json-server会自动重启
+            此时启动了一台后端服务器，在浏览器中输入http://localhost:[端口号]/，可以看到json文件中的数据
+            此时json文件中的key就是接口地址，也就是路径
+        */
+    </script>
+</body>
+</html>

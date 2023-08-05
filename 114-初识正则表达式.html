@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" required id="mytext"> <!-- 必填项，但是需求过于简单 -->
+        <input type="email"> <!-- email类型h5自动识别是否有@，但是不够满足复杂需求 -->
+        <input type="submit" value="submit">
+    </form>
+
+    <script>
+        // 正则表达式
+
+
+        // js复杂数据类型
+
+        // 创建一个正则表达式
+        // 1. 字面量 / / 
+        var reg = /abc/ // 校验是否含有abc
+        console.log(reg);
+
+        // 2. 内置构造函数 new RegExp()
+        var reg2 = new RegExp("abc") // 校验是否含有abc
+        console.log(reg2);
+
+        // 失去焦点时触发校验
+        mytext.onblur = function() {
+            // reg.test(目标字符串) 校验目标字符串是否符合正则表达式
+            console.log(reg.test(mytext.value)); // 满足true，不满足false
+        }
+    </script>
+</body>
+</html>

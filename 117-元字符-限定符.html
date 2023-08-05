@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. * 连续0~多次 
+        var reg = /\d*/
+        console.log(reg.test('abc')); // true
+        console.log(reg.test('abc1')); // true
+        console.log(reg.test('abc12')); // true
+
+
+        // 2. + 连续1~多次
+        var reg1 = /\d+/
+        console.log(reg1.test('abc')); // false
+        console.log(reg1.test('abc1')); // true
+        console.log(reg1.test('abc12')); // true
+
+
+        // 3. ? 连续0~1次
+        var reg2 = /\d?/
+        console.log(reg2.test('abc')); // true
+        console.log(reg2.test('abc1')); // true
+        console.log(reg2.test('abc12')); // true
+
+
+        // 4. {n} 连续n次
+        var reg3 = /\d{3}/
+        console.log(reg3.test('abc')); // false
+        console.log(reg3.test('abc1')); // false
+        console.log(reg3.test('abc12')); // false
+        console.log(reg3.test('abc123')); // true
+        console.log(reg3.test('abc1234')); // true
+
+
+        // 5. {n,} 连续n~多次
+        var reg4 = /\d{3,}/
+        console.log(reg4.test('abc')); // false
+        console.log(reg4.test('abc123')); // true
+        console.log(reg4.test('abc1234')); // true
+        console.log(reg4.test('abc12345')); // true
+
+
+        // 6. {n,m} 连续n~m次
+        var reg5 = /\d{3,5}/
+        console.log(reg5.test('abc')); // false
+        console.log(reg5.test('abc123')); // true
+        console.log(reg5.test('abc1234')); // true
+        console.log(reg5.test('abc12345')); // true
+        console.log(reg5.test('abc123456')); // false
+
+        /* 
+            注意：
+            {} 表示的是前面的一个字符连续出现的次数
+        */
+    </script>
+</body>
+</html>

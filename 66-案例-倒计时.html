@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+
+
+    <script>
+        // 给定一个目标时间，显示距离目标时间的差值，递减，实现倒计时效果
+
+        var targetDate = new Date("2023/6/18")
+
+        function diffTime(current, target) {
+            var sub = Math.ceil((target - current) / 1000) // 换算成秒
+
+            // days
+            var days = parseInt(sub / (60 * 60 * 24))
+            // hours
+            var hours = parseInt(sub % (60 * 60 * 24) / (60 * 60))
+            // minutes
+            var minutes = parseInt(sub % (60 * 60) / 60)
+            // seconds
+            var seconds = sub % 60
+
+            // 通过一个对象进行封装并返回
+            var obj = {
+                days: days,
+                hours: hours,
+                minutes: minutes,
+                seconds: seconds
+            }
+
+            return obj
+        }
+
+
+
+        setInterval(function () {
+            var currentDate = new Date()
+            var res = diffTime(currentDate, targetDate)
+            // 拿到box盒子
+            // .innerHTML可以把内容塞进html的盒子标签中，且多次执行，结果会覆盖之前的内容
+            box.innerHTML = `距离京东618-${res.days}天${res.hours}时${res.minutes}分${res.seconds}秒`
+            
+        }, 1000) // 每隔1秒刷新一次倒计时
+
+    </script>
+</body>
+
+</html>

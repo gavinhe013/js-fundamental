@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            height: 100px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="box" style="width: 100px; color: black; background-color: yellow;">111111</div>
+
+
+    <script>
+        // 行内样式方法
+
+        // 元素.style.属性名，只能获取行内样式 -- 读写
+        console.log(box.style.width); // 100px
+        console.log(box.style.height); // 访问不到，因为只能获取行内样式
+
+        // 因为background-color有连字符，所以不能用.的方式直接访问
+        console.log(box.style['background-color']); // yellow 通过['key']的方式访问
+        console.log(box.style.backgroundColor); // yellow 通过驼峰写法访问
+
+        // 通过赋值的方式修改行内样式
+        box.style.width = "200px"
+        box.style.backgroundColor = "red";
+        
+        
+        
+        
+        // 内部样式，外部样式，行内样式都可以通过这种方式获取， 但是不能赋值写样式
+
+        // window.getComputedStyle(元素) -- 只读
+        var obox = document.getElementById("box");
+        var res = getComputedStyle(obox);
+        console.log(res.height); // 100px
+        console.log(res.width); // 200px
+        console.log(res.backgroundColor); // rgb(255, 0, 0)
+
+        // res.width = "10px"; // 报错， 不能通过赋值的方式修改样式
+
+        // getComputedStyle 标准方法
+        // IE低版本不支持，所以要用 元素.currentStyle.属性名 进行获取
+    </script>
+</body>
+</html>

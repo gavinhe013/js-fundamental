@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" id="all"> 全选/全不选
+    <hr>
+    <ul class="shop">
+        <li>
+            <input type="checkbox"> 商品1
+        </li>
+        <li>
+            <input type="checkbox"> 商品2
+        </li>
+        <li>
+            <input type="checkbox"> 商品3
+        </li>
+        <li>
+            <input type="checkbox"> 商品4
+        </li>
+    </ul>
+
+    <script>
+        // 通过css选择器规则获取全选checkbox元素
+        var oAll = document.querySelector("#all")
+
+        // 通过css选择器规则获取全部li中的input标签元素
+        var oitems = document.querySelectorAll(".shop input")
+
+        console.log(oitems); // NodeList(4) [input, input, input, input]
+
+        // 给全选checkbox注册勾选事件
+        oAll.onclick = function () {
+            console.log(oAll.checked); // 勾选上之后true，取消勾选之后false
+
+            for (var i = 0; i < oitems.length; i++) {
+                // 如果全选checkbox被勾选上，就让所有的li中的input标签元素也被勾选上
+                // 如果全选checkbox被取消勾选，就让所有的li中的input标签元素也被取消勾选
+                oitems[i].checked = oAll.checked
+            }
+        }
+
+        // 给每一个li中的input标签元素注册勾选事件
+        for (var i = 0; i < oitems.length; i++) {
+            oitems[i].onclick = handler // 给每一个人li中的input标签元素注册勾选事件，事件处理函数是handler
+        }
+
+        function handler() {
+            var count = 0;
+
+            // 用for循环遍历，如果当前li中的input标签元素被勾选上，count++
+            for (var i = 0; i < oitems.length; i++) {
+                if (oitems[i].checked) {
+                    count++
+                }
+            }
+
+            // 如果count等于oitems长度，说明所有的li中的input标签元素都被勾选上了，就让全选checkbox也被勾选上
+            // 如果count不等于oitems长度，说明所有的li中的input标签元素没有都被勾选上，就让全选checkbox也被取消勾选
+            if (count === oitems.length) {
+                oAll.checked = true
+            } else {
+                oAll.checked = false
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

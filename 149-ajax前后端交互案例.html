@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="mytext">
+    <button id="myadd">add</button>
+    <ul class="list">
+    </ul>
+
+    <script type="module">
+        // 面向对象的方法 + ajax封装 + json-server服务器环境
+        // 在线版的to do list
+
+        import ajax from "./149-util.js";
+        console.log(ajax);
+
+        // 把列表当成一个对象
+        class TodoList {
+            constructor(select) {
+                this.listEle = document.querySelector(select);
+                this.listdata = []; // 列表数据，存放li
+
+                this.init();
+            }
+
+            init() {
+                // 初始化
+                this.bindEvent();
+                // 获取数据的方法
+                this.getList();
+            }
+
+            bindEvent() {
+                // 因为要用到this，所以要用箭头函数，把this指向对象
+                this.listEle.onclick = (evt) => {
+                    // console.log();
+                    if (evt.target.nodeName === "BUTTON") {
+                        this.removeItem(evt.target)
+                    }
+                }
+            }
+
+            getList() {
+                ajax({
+                    url: "http://localhost:3000/list",
+                    // 这里因为函里面套函数，此时this指向的是ajax函数，所以要用箭头函数，让this指向对象
+                    success: (res) => {
+                        console.log(res);
+                        this.listdata = res;
+
+                        this.render()
+                    },
+                    error: function (err) {
+                        console.log("error", err);
+                    }
+                })
+
+            }
+
+            // 渲染列表
+            render() {
+                this.listEle.innerHTML = this.listdata.map(item => `
+                <li>
+                    ${item.text}
+                    <button data-index=${item.id}>del</button>
+               </li>`).join("")
+            }
+
+            addItem(text) {
+                // console.log(text);
+
+                // 现在数据库添加后，在成功回调中，在页面添加
+                // 因为id是在数据库中生成的
+
+                // 添加任务
+                ajax({
+                    // 删除id为2的用户
+                    url: `http://localhost:3000/list`,
+                    method: "POST",
+                    data: {
+                        // key 和 value 一样，所以简写成一个
+                        text
+                    },
+                    success: (res) => {
+                        console.log("添加成功", res)
+
+                        // 重新加载页面，刷新列表，这样可以自动更新删除完之后的列表
+                        // 但是会导致全局刷新页面，所以不合理
+                        // location.reload();
+
+                        // 应该利用ajax，局部更新页面
+                        // 先把原有数据展开，添加进来，然后再加上新的数据
+                        this.listdata = [...this.listdata, res]
+                        this.render()
+                    },
+                    error: function (err) {
+                        console.log("error", err)
+                    }
+                })
+            }
+
+            removeItem(target) {
+                target.parentNode.remove();
+
+                // 删除任务
+                ajax({
+                    // 删除id为2的用户
+                    url: `http://localhost:3000/list/${target.dataset.index}`,
+                    method: "DELETE",
+                    // 不需要传data，也不需要设置header
+                    success: (res) => {
+                        console.log("删除成功")
+                    },
+                    error: function (err) {
+                        console.log("error", err)
+                    }
+                })
+            }
+
+            updateItem() {
+
+            }
+        }
+
+
+
+
+        var obj = new TodoList(".list");
+
+        myadd.onclick = function() {
+            // console.log(mytext.value);
+            obj.addItem(mytext.value)
+        }
+    </script>
+
+</body>
+
+</html>

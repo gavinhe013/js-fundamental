@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>      
+        span {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            border: 1px solid #050505;
+            margin-left: -1px;
+            margin-top: -1px;
+            /* border-collapse: collapse; */
+        }
+    </style>
+
+    <script>
+        function test() {
+            for (var r = 1; r <= 9; r++) {
+                for (var c = 1; c <= r; c++) {
+                    document.write("<span>" + c + " X " + r + " = " + (c*r) + "</span>")
+                }
+                document.write("<br>")
+            }
+        }
+
+        function test1() {
+            for (var r = 1; r <= 4; r++) {
+                for (var c = 1; c <= r; c++) {
+                    document.write("<span>" + c + " X " + r + " = " + (c*r) + "</span>")
+                }
+                document.write("<br>")
+            }
+        }
+
+        test()
+        test1()
+
+        // 可以通过设置参数，传参，与函数进行沟通，使函数更加灵活泛用
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

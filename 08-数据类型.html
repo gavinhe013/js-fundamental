@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1. 基本类型
+        /* 
+            1. Number
+            2. String
+            3. Boolean
+            4. Undefined
+            5. Null
+            6. Symbol
+            7. BigInt
+        */
+
+        // 2. 复杂类型
+        /*
+                Object 
+        */
+
+
+        // Number
+        var age = 18
+        console.log(age + 20)
+
+        var price = 12.5
+        console.log(price)
+
+        var year = 2e3 // 2*10^3
+        console.log(year)
+
+        var a = 0x99 // 十六进制 1-9 a-f
+        var b = 0o77 // 八进制
+        var c = 0b11 // 二进制
+        console.log(a) // 显示二进制结果
+        console.log(b) // 显示二进制结果
+        console.log(c) // 显示二进制结果
+
+        // String
+        var num1 = 10
+        var num2 = "20"
+        console.log(num1 + num2) // 1020
+
+        var str = "hello"
+        console.log(str)
+
+        // Boolean
+        var isChecked = true
+        var isMale = false
+        console.log(isChecked)
+        console.log(isMale)
+
+        // Undefined 在不确定未来赋值类型的时候，仅声明变量即可
+        var which
+        console.log(which); // undefined: declared but not assined value
+
+        // Null 未来要赋值对象的变量，可以先定义为null，之后在把具体的对象进行赋值
+        var whichObject = null // assign null
+        console.log(whichObject)
+        whichObject = { name: "alice" } // assign a specific object to the variable
+        console.log(whichObject)
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

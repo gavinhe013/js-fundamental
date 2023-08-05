@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="text" id="username">
+
+    <script>
+        // 键盘事件一般加给 window, document, 输入框input
+
+        // keydown 键盘按下事件，通过在指定区域内按下键盘触发
+        username.onkeydown = function() {
+            console.log("按下键盘", "判断是否为回车键");
+        }
+
+        // keyup 键盘抬起事件，通过在指定区域内抬起键盘触发
+        username.onkeyup = function() {
+            console.log("抬起键盘", "判断是否为回车键");
+        }
+
+        
+        /* 
+            浏览器事件
+            load
+            scroll
+            ...
+
+            具体看BOM中的操作
+        */
+    </script>
+</body>
+</html>

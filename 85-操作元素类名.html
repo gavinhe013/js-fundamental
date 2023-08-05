@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            color: black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="item item1 item2">alice</div>
+    
+    <button id="btn">click</button>
+
+    <script>
+        // .className --读写
+        // 获取元素的类名
+        console.log(box.className); // item item1 item2
+        // 通过赋值的方式修改类名
+        // box.className = "item item2"
+        // box.className += " item3";
+        // box.className = "item item1 item2 item3";
+
+
+        // .classList属性
+        console.log(box.classList) // DOMTokenList(3) ['item', 'item1', 'item2', value: 'item item1 item2']
+        
+        // .classList.add("class") -- 添加类名
+        box.classList.add("item3") /
+        box.classList.add("item2") // 自动去重
+
+        // .classList.remove("class") -- 删除类名
+        box.classList.remove("item3")
+        box.classList.remove("item2") 
+        box.classList.remove("item1") 
+
+        // .classList.toggle("class") -- 切换类名
+        // 如果元素有这个类名，就删除，如果没有就添加
+        btn.onclick = function() {
+            ospan[i].classList.toggle("item")
+            box.classList.toggle("item")
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">抽奖</button>
+    <button id="btn2">抽奖2</button>
+
+    <script>
+        // btn.onclick = function () {
+        //     console.log("谢谢惠顾");
+        //     // 点击一次之后，让按钮变成不可点击, 但是并没有让事件解绑，可以通过更改前端元素属性再次触发绑定事件
+        //     this.disabled = "disabled"
+        // }
+
+        // 事件解绑 - dom0
+        // dom节点.onclick = null
+        btn.onclick = function() {
+            console.log("谢谢惠顾");
+            // 解绑
+            this.onclick = null;
+        }
+
+
+        // 事件解绑 - dom2
+        // dom节点.removeEventListener("事件类型", 函数名)
+
+        // 为了要保证绑定和解绑的函数为同一函数，所以需要将函数提出来，单独定义
+        function handler() {
+            console.log("谢谢惠顾");
+            // 解绑
+            this.removeEventListener("click", handler)
+        }
+
+        btn2.addEventListener("click", handler)
+
+
+        // 兼容低版本浏览器
+        // function handler() {
+        //     console.log("谢谢惠顾");
+        //     // 解绑
+        //     btn2.detachEvent("onclick", handler)
+        // }
+
+        // btn2.attachEvent("onclick", handler)
+        
+    </script>
+</body>
+
+</html>

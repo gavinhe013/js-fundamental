@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="myform">
+        <input type="text" id="username">
+        <input type="reset">
+        <input type="submit" value="提交">
+    </form>
+    
+
+    <script>
+        // focus 获取焦点触发
+        username.onfocus = function() {
+            console.log("获取焦点");
+        }
+
+        // blur 失去焦点触发
+        username.onblur = function() {
+            console.log("失去焦点");
+            // i.e. 判断用户名是否重名
+        }
+
+        // change 获取焦点，失去焦点的时候对比，里面内容不一样才会触发
+        username.onchange = function() {
+            console.log("内容改变");
+        }
+
+        // input 内容不一样立刻就触发
+        username.oninput = function() {
+            console.log("内容改变立刻触发");
+        }
+
+
+        // 提交重置，要绑定在form上
+
+        // submit 提交form时触发
+        myform.onsubmit = function() {
+            console.log("提交", "校验表单内容");
+
+            return false; // 阻止默认跳转页面行为
+        }
+        // reset 重置form时触发
+        myform.onreset = function() {
+            console.log("重置");
+        }
+    </script>
+</body>
+</html>

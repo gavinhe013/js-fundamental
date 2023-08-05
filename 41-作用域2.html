@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // var num = 100
+        // function fn() {
+        //     var num2 = 200
+
+        //     function fun() {
+        //         var num3 = 300
+
+        //         console.log(num3); // 300 局部作用域可以访问到num3
+        //         console.log(num2); // 200 上一级查找，可以访问到num2
+        //         console.log(num); // 100 上上一级查找，找到全局作用域，可以访问到num
+        //         console.log(a); // 报错 直至全局作用域也没找到a
+        //     }
+
+        //     fun()
+        // }
+
+        // fn()
+
+
+        // var num = 100
+
+        // function test1() {
+        //     var num = 200
+
+        //     function child1() {
+        //         // var num = 300
+
+        //         num = 400
+        //         console.log(num); // 就近寻找num
+        //     }
+        //     console.log("修改前", num); // 200
+        //     child1()
+        //     console.log("修改后", num); // 400
+        // }
+
+        // test1() // 400
+
+
+        function test1() {
+
+            function child1() {
+                num = 400 // 直至全局都没找到，这个赋值定义变量就相当于添加了一个全局变量
+                console.log(num); 
+            }
+            child1()
+            console.log("赋值后", num); // 400
+        }
+
+        test1() // 400
+
+
+
+        function test(a, b) {
+            return a + b
+        }
+
+        var res = test(1, 2)
+        console.log(res);  // 3
+
+
+        var result
+        function test3(a, b) {
+            result = a + b
+        }
+
+        test3(1, 2)
+        console.log(result); // 3
+ 
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

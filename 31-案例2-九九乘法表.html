@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // print 9x9 "+"
+        // for (var r = 1; r <= 9; r++) {
+        //     for (var c = 1; c <= 9; c++) {
+        //         document.write(" + ")
+        //     }
+        //     document.write("<br>")
+        // }
+
+        // print triangle "+"
+        // for (var r = 1; r <= 9; r++) {
+        //     for (var c = 1; c <= r; c++) {
+        //         document.write(" + ")
+        //     }
+        //     document.write("<br>")
+        // }
+
+        // print 九九乘法
+        for (var r = 1; r <= 9; r++) {
+            for (var c = 1; c <= r; c++) {
+                document.write("<span>" + c+"X"+r+"="+(c*r) + "</span>")
+            }
+            document.write("<br>")
+        }
+    </script>
+
+    <style>
+        
+        span {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            border: 1px solid #050505;
+            margin-left: -1px;
+            margin-top: -1px;
+            /* border-collapse: collapse; */
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

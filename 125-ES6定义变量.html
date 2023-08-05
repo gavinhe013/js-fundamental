@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let const
+
+        /* 
+            与var区别
+
+            1. 必须先定义再使用
+            2. 变量不能重复定义, 不能重名
+            3. 块级作用域 定义的变量只在{}中能被访问到，否则会报错
+        */
+        // console.log(a); // 报错，Uncaught ReferenceError: Cannot access 'a' before initialization
+        let a = 100
+        console.log(a); // 100
+
+
+        /* 
+            let 定义变量
+            const 定义常量
+        
+        */
+        let name = "alice"
+        name = "bob"
+        console.log(name); // bob
+
+        const age = 20
+        // age = 21  // 报错 Uncaught TypeError: Assignment to constant variable.
+
+        const obj = {
+            name: "alice"
+        }
+        obj.name = "bob"
+        console.log(obj); // {name: "bob"} // 可以修改对象的属性，但是不能修改对象的指向
+
+        // const  定义的时候必须要进行赋值，否则会报错，因为undefined没有意义
+    </script>
+</body>
+
+</html>

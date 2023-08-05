@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="mytext">
+    <button id="myadd">add</button>
+    <ul class="list">
+    </ul>
+
+    <script type="module">
+
+        // 把列表当成一个对象
+        class TodoList {
+            constructor(select) {
+                this.listEle = document.querySelector(select);
+                this.listdata = []; // 列表数据，存放li
+
+                this.init();
+            }
+
+            init() {
+                // 初始化
+                this.bindEvent();
+                // 获取数据的方法
+                // 因为getList返回的是promise对象，所以可以用then
+                this.getList().then(res => {
+                    this.listdata = res
+                    this.render()
+                });
+            }
+
+            bindEvent() {
+                // 因为要用到this，所以要用箭头函数，把this指向对象
+                this.listEle.onclick = (evt) => {
+                    // console.log();
+                    if (evt.target.nodeName === "BUTTON") {
+                        this.removeItem(evt.target)
+                    }
+                }
+            }
+
+            async getList() {
+                // 把promise对象返回出去
+                var res = await fetch("http://localhost:3000/list").then(res => res.json())
+                return res
+            }
+
+            // 渲染列表
+            render() {
+                this.listEle.innerHTML = this.listdata.map(item => `
+                    <li>
+                        ${item.text}
+                        <button data-index=${item.id}>del</button>
+                   </li>`).join("")
+            }
+
+            async addItem(text) {
+                // console.log(text);
+
+                // 现在数据库添加后，在成功回调中，在页面添加
+                // 因为id是在数据库中生成的
+
+                // 添加任务
+                var res = await fetch("http://localhost:3000/list", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        text
+                    })
+                }).then(res => res.json())
+
+                this.listdata = [...this.listdata, res]
+                this.render()
+            }
+
+            async removeItem(target) {
+                target.parentNode.remove();
+
+                // 删除任务
+                await fetch(`http://localhost:3000/list/${traget.dataset.index}`, {
+                    method: "DELETE"
+                }).them(res => res.json())
+
+                console.log("删除成功");
+
+            }
+
+            updateItem() {
+
+            }
+        }
+
+
+
+
+        var obj = new TodoList(".list");
+
+        myadd.onclick = function () {
+            // console.log(mytext.value);
+            obj.addItem(mytext.value)
+        }
+
+        console.log("display: loading...")
+
+        var q1 = fetch("http://localhost:3000/looplist").then(res => res.json())
+
+        var q2 = fetch("http://localhost:3000/datalist").then(res => res.json())
+
+
+        // 链式调用是串联的，一个then执行完，才会执行下一个then，而Promise.all是并发的
+        // Promise.all([q1, q2....]) 用来处理多个promise对象，当所有的promise对象都兑现承诺时，才会执行then
+        // 如果有一个promise对象没有兑现承诺，就会执行catch
+
+        // Promise.all([q1, q2]).then(res => {
+        //     console.log(res);
+        //     console.log("hide: loading...")
+        // }).catch(err => {
+        //     console.log(err);
+        // })
+
+        async function test() {
+            try {
+                var res = await Promise.all([q1, q2])
+
+                console.log(res);
+                console.log("hide: loading...");
+            } catch (err) {
+                console.log(err);
+            }
+
+        }
+
+        test()
+
+    </script>
+</body>
+
+
+</html>

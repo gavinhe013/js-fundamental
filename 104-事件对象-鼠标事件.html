@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 20000px;
+            height: 20000px;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            margin: 100px;
+        }
+
+        p {
+            width: 100px;
+            height: 100px;
+            margin: 30px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p></p>
+    </div>
+
+    <script>
+        box.onclick = function(evt) {
+            // clientX clientY 距离浏览器可视窗口左上角的距离，受页面滚动影响
+            console.log(evt.clientX, evt.clientY);
+
+            // pageX pageY 距离页面文档流左上角的距离，不受页面滚动影响
+            console.log(evt.pageX, evt.pageY);
+
+            // offsetX offsetY 距离触发元素的左上角的距离, 如果绑定的元素有子元素，那么这个值会受到子元素的影响，即距离子元素左上角距离
+            console.log(evt.offsetX, evt.offsetY);
+        }
+
+
+    </script>
+</body>
+</html>

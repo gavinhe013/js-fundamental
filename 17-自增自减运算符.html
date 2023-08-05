@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // ++
+        
+        //  后置++ 先返回再+1
+        var number = 10
+        document.write(number++) // 10
+        document.write("<br>")
+        document.write(number) // 11
+        document.write("<br>")
+
+        // 前置++ 先+1再返回
+        var number1 = 100
+        document.write(++number1) // 101
+        document.write("<br>")
+        document.write(number1) // 101
+        document.write("<br>")
+
+        var n = 10
+        var res = ++n + n++ + ++n // 11 + 11 + 13 = 35
+        console.log(n, res); // 13 35
+
+        // --
+
+        //  后置-- 先返回再-1
+        var number2 = 10
+        document.write(number2--) // 10
+        document.write("<br>")
+        document.write(number2) // 9
+        document.write("<br>")
+
+        // 前置-- 先-1再返回
+        var number3 = 100
+        document.write(--number3) // 99
+        document.write("<br>")
+        document.write(number3) // 99
+        document.write("<br>")
+
+        var m = 10
+        var res = m++ + --m + m-- + ++m // 10 + 10 + 10 + 10 = 40
+        console.log(m, res); // 10 40
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

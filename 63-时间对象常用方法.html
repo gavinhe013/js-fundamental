@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var date = new Date()
+
+        // getFullYear() 获取年份
+        console.log(date.getFullYear()); // 2023
+
+        // getMonth() 获取月份， [0,11] 对应 1-12月，起始为0
+        console.log(date.getMonth()); // 4
+
+        // getDate() 获取日
+        console.log(date.getDate()); // 18
+
+        // getDay() 获取星期几 sunday 0， monday-saturday 1-6
+        console.log(date.getDay()); // 4
+
+        // getHours() getMinutes() getSeconds() 获取小时，获取分钟，获取秒
+        // getMilliseconds() 获取毫秒
+        console.log(date.getHours()); // 8
+        console.log(date.getMinutes()); // 29
+        console.log(date.getSeconds()); // 52
+        console.log(date.getMilliseconds()); // 964
+
+        // getTime() 获取时间戳, 距离起始时间1970/1/1 0:0:0的毫秒数
+        console.log(date.getTime()); // 1684362692971 一般用于存于后端
+        console.log(new Date(1684362692971)); // Thu May 18 2023 08:31:32 GMT+1000 (澳大利亚东部标准时间) 把毫秒差作为参数传入对象创建，转换成时间
+        
+
+        // 单独设置时间
+        console.log(date); // Thu May 18 2023 08:57:59 GMT+1000 (澳大利亚东部标准时间)
+
+        // setFullYear(year) 把date设置成year年
+        date.setFullYear(2025)
+        console.log(date);  // Sun May 18 2025 08:57:59 GMT+1000 (澳大利亚东部标准时间)
+
+        // setMonth(month) 把date设置成month月，[0,11] 对应 1-12月 起始为0
+        date.setMonth(5)
+        console.log(date); // ed Jun 18 2025 08:57:59 GMT+1000 (澳大利亚东部标准时间)
+
+        // setDate(day) 把date设置成day日
+        date.setDate(25)
+        console.log(date); // Wed Jun 25 2025 08:59:22 GMT+1000 (澳大利亚东部标准时间)
+
+        /* 
+            注意： 不能设置weekday，因为是通过日期自动推算的
+         */
+
+        // setHours(h) setMinutes(m) setSeconds(s) 把date设置成h小时，m分钟，s秒
+        date.setHours(13)
+        console.log(date); // Wed Jun 25 2025 13:01:48 GMT+1000 (澳大利亚东部标准时间)
+
+        date.setMinutes(50)
+        console.log(date); // Wed Jun 25 2025 13:50:48 GMT+1000 (澳大利亚东部标准时间)
+
+        date.setSeconds(59) 
+        console.log(date); // Wed Jun 25 2025 13:50:59 GMT+1000 (澳大利亚东部标准时间)
+
+
+        // setTime(毫秒) 设置时间戳 等同于new Date(毫秒)
+        date.setTime(1684362692971)
+        console.log(date); // Thu May 18 2023 08:31:32 GMT+1000 (澳大利亚东部标准时间)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

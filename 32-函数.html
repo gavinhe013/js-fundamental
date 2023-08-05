@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+            function
+                函数 是一个复杂数据类型
+
+        */
+
+        // 声明式定义函数，预解析，可以在前面进行调用   赋值式不可以，会报错
+        test1()
+
+        // 1. 定义函数
+        // （1）声明式
+        function test1() {
+            var test1_a = "abc"
+            console.log("this is function test1", test1_a);
+        }
+        function test2() {
+            console.log("this is function test2");
+        }
+        // （2）赋值式
+        var test3 = function() {
+            console.log("this is function test3");
+        }
+
+
+        // 2. 调用函数
+        console.log("-----------")
+        test1()
+        test1()
+        test1()
+        test2()
+
+        test3()
+
+        // 区别1 声明式，可以先调用后定义
+        // 区别2 赋值式，需要先定义再调用
+        test1()
+        console.log(test1_a) // 在函数之外直接调用函数内的变量，会报错，调用不到
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

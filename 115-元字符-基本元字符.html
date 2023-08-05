@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        /* 
+            包含n位数字：/\d{n}/
+            包含n位非数字：/\D{n}/
+            包含n位空白字符：/\s{n}/
+            包含n位非空白字符：/\S{n}/
+            包含n位字母数字下划线：/\w{n}/
+            包含n位非字母数字下划线：/\W{n}/
+            包含n位任意字符：/.{n}/
+            转义字符：\
+            
+
+        */
+
+        // 1. \d 包含一位数字(0-9)
+        var reg = /\d/
+        console.log(reg.test("abc")); // false
+        console.log(reg.test("123")); // true
+        
+        var reg1 = /\d{2}/ // 包含两位数字
+        console.log(reg1.test("abc1")); // false
+        console.log(reg1.test("123")); // true
+
+
+        // 2. \D 包含一位非数字
+        var reg2 = /\D/
+        console.log(reg2.test("abc")); // true
+        console.log(reg2.test("123")); // false
+        console.log(reg2.test("3c")); // true
+
+        var reg3 = /\Dk\D/ // 包含"一位非数字 + k + 一位非数字"
+        console.log(reg3.test("abc")); // false
+        console.log(reg3.test("1k3")); // false
+        console.log(reg3.test("akc")); // true
+
+
+        // 3. \s 包含一位空白字符（空格 缩进 换行）
+        var reg4 = /\s/
+        console.log(reg4.test("abc")); // false
+        console.log(reg4.test("a c")); // true 空格
+        console.log(reg4.test("a\tc")); // true 缩进
+        console.log(reg4.test("a\nc")); // true 换行
+
+
+        // 4. \S 包含一位非空白字符
+        var reg5 = /\S/
+        console.log(reg5.test("abc")); // true
+        console.log(reg5.test(" ")); // false 只有空格
+        console.log(reg5.test("\t")); // false 只有缩进
+        console.log(reg5.test("\n")); // false 只有换行
+
+
+        // 5. \w 包含一位字母，数字，下划线
+        var reg6 = /\w/
+        console.log(reg6.test("12_abc")); // true 字母数字下划线
+        console.log(reg6.test("a")); // true 字母
+        console.log(reg6.test("_")); // true 下划线
+        console.log(reg6.test("1")); // true 数字
+        console.log(reg6.test("&*")); // false 符号
+
+
+        // 6. \W 包含一位非字母，数字，下划线
+        var reg7 = /\W/
+        console.log(reg6.test("12_abc")); // false 只有数字字母下划线
+        console.log(reg6.test("a")); // false 只有字母
+        console.log(reg6.test("_")); // false 只有下划线
+        console.log(reg6.test("1")); // false 只有数字
+        console.log(reg6.test("&*")); // true 只有符号
+
+
+        // 7. . 包含一位任意字符 (除了换行符)
+        var reg8 = /./
+        console.log(reg8.test("abc")); // true
+        console.log(reg8.test("%^&")); // true
+        console.log(reg8.test("12\n3")); // true 除了换行符还有其他字符
+        console.log(reg8.test("\n\n")); // false 只有换行符
+
+        
+        // 8. \ 转义字符
+        // .本身代表任意字符，但是通过转义 \. 就代表 . 本身
+        var reg9 = /\d\.\d/ // 包含一位数字 + . + 一位数字
+        console.log(reg9.test("1.2")); // true
+        console.log(reg9.test("1a2")); // false
+    </script>
+</body>
+</html>

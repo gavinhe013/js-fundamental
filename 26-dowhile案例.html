@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // sum 1-100
+        var n = 1
+        var sum = 0
+        do {
+            sum += n
+            n++
+        } while (n <= 100);
+        console.log(sum); // 1050
+
+        // 输入用户名， 如果不输入则一直死循环弹输入窗口
+        do {
+            var res = prompt("please input your username") // 浏览器输入窗口
+            if (res) {
+                document.write(res)
+            }
+        } while (!res); // 如果是空，则true进入死循环，非空false结束循环
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

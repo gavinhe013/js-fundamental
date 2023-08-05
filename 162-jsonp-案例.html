@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" name="" id="mysearch">
+    <ul id="list"></ul>
+
+    <script>
+        //https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=36552,38643,38831,39025,39024,38882,38957,38954,38982,39016,38915,38973,38806,38640,26350,38683&wd=a&req=2&csor=1&cb=jQuery110204134061091073966_1688923741813&_=1688923741814
+
+        mysearch.oninput = function (evt) {
+            console.log(evt.target.value);
+
+            // 如果输入框的值为空，就不发送请求
+            if(!evt.target.value) {
+                // 清空ul中的内容
+                list.innerHTML = ""
+                return
+            }
+
+            let oscript = document.createElement("script")
+            // cb之后的接口函数名字可以自定义，这里改为test
+            // wd后面的值是输入框的值，这里改为evt.target.value
+            oscript.src = `https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=36552,38643,38831,39025,39024,38882,38957,38954,38982,39016,38915,38973,38806,38640,26350,38683&wd=${evt.target.value}&req=2&csor=1&cb=test&_=1688923741814`
+            document.body.appendChild(oscript)
+
+            oscript.onload = function () {
+                oscript.remove()
+            }
+        }
+
+        function test(obj) {
+            // console.log(obj)
+
+            // 获取obj下的g，g是一个数组
+            console.log(obj)
+            console.log(obj.g)
+            
+            // 把数组中的每一项的q属性取出来，放到li中
+            list.innerHTML = obj.g.map(item =>
+                `<li>${item.q}</li>`).join("")
+        }
+
+
+
+        /* 
+            实际上，jsonp现在应用的已经很少了
+
+            更多的是使用
+            1. 后端设置 cors跨域
+            2. 反向代理服务器
+         */
+    </script>
+</body>
+
+</html>

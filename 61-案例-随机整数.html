@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 0-10 不包含10
+        var num1 = Math.floor(Math.random() * 10)
+        console.log(num1);
+
+        // 0-10 包含10
+        var num2 = Math.floor(Math.random() * (10 + 1))
+        console.log(num2);
+
+        // 10-20 不包含20
+        var num3 = Math.floor(Math.random() * 10 + 10)
+        console.log(num3);
+
+        // 10-20 包含20
+        var num4 = Math.floor(Math.random() * (10 + 1) + 10)
+        console.log(num4);
+
+
+
+        // 把随机整数封装成函数  
+        
+        // [min, max)
+        function getRnd1(min, max) {
+            if (min > max) {
+                console.error('参数有误');
+                return
+            }
+            return Math.floor(Math.random() * (max - min) + min)
+        }
+        // [min, max]
+        function getRnd2(min, max) {
+            if (min > max) {
+                console.error('参数有误');
+                return
+            }
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        console.log(getRnd1(20, 30)); // 22
+        console.log(getRnd2(20, 30)); // 30
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

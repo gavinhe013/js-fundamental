@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="list">
+
+    </ul>
+
+
+    <script>
+        // 假设后端传来的数组，根据数组的长度创建li， 里面除了内容，还有一个删除按钮，点击删除按钮，删除当前li
+        var arr = ["111", "222", "333"]
+
+        for (var i = 0; i < arr.length; i++) {
+            // 创建li节点，添加数组的内容至li
+            var oli = document.createElement("li");
+            oli.innerHTML = arr[i]
+
+            // 创建button节点
+            var oButton = document.createElement("button");
+            oButton.innerHTML = "delete"
+
+            // 给button绑定点击事件
+            oButton.onclick = handler
+
+            // 添加按钮至li
+            oli.appendChild(oButton)
+
+            // 添加li节点至ul中
+            list.appendChild(oli)
+        }
+
+        function handler() {
+            this.parentNode.remove() // this指向当前点击的按钮，this.parentNode指向当前点击的按钮的父节点，即li
+        }
+    </script>
+</body>
+
+</html>

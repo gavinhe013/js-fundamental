@@ -1,0 +1,12 @@
+{
+    "news": [
+        {"id": 1, "title": "男人看了沉默，女人看了流泪", "author": "alice"},
+        {"id": 2, "title": "震惊! 他年薪仅1万", "author": "bob"}
+    ],
+    "comments": [
+        {"id": 1, "body": "我是男人", "newsId": 1},
+        {"id": 2, "body": "我是女人", "newsId": 1},
+        {"id": 3, "body": "我年薪2万", "newsId": 2},
+        {"id": 4, "body": "我年薪3万", "newsId": 2}
+    ]
+}

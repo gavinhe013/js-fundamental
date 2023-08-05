@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+    // Promise构造函数
+
+    // promise对象
+    var q = new Promise(function(resolve,reject){  
+        // 执行异步代码
+        setTimeout(()=>{
+            // resolve(["111", "222", "333"]) // 兑现承诺
+            reject("ERROR!!!!!") // 拒绝承诺
+        }, 2000)
+    })
+    
+    
+    // 在生成完promise对象之后，promise处于pending状态
+    // 当调用resolve，promise处于fulfilled状态， pending -> fulfilled
+    // 当调用reject，promise处于rejected状态, pending -> rejected
+
+
+    q.then(function(res){
+        // 兑现承诺，这个函数被执行
+        console.log("success", res)
+    }).catch(function(err){
+        // 拒绝承诺，这个函数被执行
+        console.log("fail", err);
+    })
+    </script>
+</body>
+
+</html>

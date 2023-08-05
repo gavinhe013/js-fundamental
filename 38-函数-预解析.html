@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        // 预解析 -> 变量提升
+
+        console.log(myname); // undefined 因为预解析会把var的变量声明提到前面
+        // console.log(myage); // 报错
+
+        var myname = "alice"
+        console.log(myname); // alice
+
+
+
+        // 赋值函数
+        // myFunc() // 报错 myFunc is not a function 因为预解析把var声明的myFunc踢到前面，但是此时是undefined，还不知道它是一个function还是其他类型的变量，所以不能作为一个function执行
+        // myFunc2() // 报错 myFunc2 is not defined
+
+        var myFunc = function() {
+            console.log("myFunc");
+        }
+
+        myFunc()
+
+
+        // 声明式函数
+
+        test() // test 声明式函数，通过预解析会把整个声明式函数提到前面，所以不会报错，会执行函数的结果
+
+        function test() {
+            console.log("test");
+        }
+
+        test()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

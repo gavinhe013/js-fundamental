@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1 创建一个新的空数组，从原数组遍历元素添加到新数组中，添加前判断是否已存在于新数组中， 未存在则添加
+        var arr = [1, 2, 3, 4, 3, 5, 6, 2, 1]
+
+        var arr1 = []
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr1.indexOf(arr[i]) === -1) {
+                arr1.push(arr[i])
+            }
+        }
+
+        console.log(arr, arr1); // [1, 2, 3, 4, 3, 5, 6, 2, 1] [1, 2, 3, 4, 5, 6]
+
+
+        // 2 利用对象
+        var obj = {}
+        for (var i = 0; i < arr.length; i++) {
+            obj[arr[i]] = "abc"
+        }
+         
+        // console.log(Object.keys(obj)); 这里的key是字符串
+        var arr2 = []
+       
+        for (var i in obj) {
+            arr2.push(Number(i))
+        }
+
+        console.log(arr, arr2); // [1, 2, 3, 4, 3, 5, 6, 2, 1] [1, 2, 3, 4, 5, 6]
+
+
+        // 3 使用 Set， Set中不存在重复的元素
+        var set1 = new Set(arr)
+        console.log(set1); // {1, 2, 3, 4, 5, 6}
+
+        var arr3 = Array.from(set1) // Array.from(input) 把可迭代类数组的对象转换成数组并返回
+        console.log(arr3); // [1, 2, 3, 4, 5, 6] 
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="mybtn">jsonp</button>
+
+    <script>
+        /* 
+            jsonp原理：动态创建script标签，src属性指向是没有跨域限制的
+            指向一个接口，接口返回的格式一定是 ****() 函数表达式
+        */
+
+        function test(obj) {
+            console.log(obj);
+        }
+
+
+        function callbackFunction(obj) {
+            console.log(obj);
+        }
+
+        mybtn.onclick = function () {
+            // let oscript = document.createElement("script"); // 动态创建script标签
+            // oscript.src = "./161-01.txt" // 未来接口地址
+            // document.body.appendChild(oscript); // 把script标签插入到body中
+
+            let oscript = document.createElement("script"); 
+            // jsoncallback是接口规定的参数名，callbackFunction是回调函数的名字，回调函数的名字可以自定义（后端接口的灵活性）
+            // oscript.src = `https://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction`
+            // document.body.appendChild(oscript);
+            oscript.src = `https://www.runoob.com/try/ajax/jsonp.php?jsoncallback=test`
+            document.body.appendChild(oscript);
+
+            // 为了防止script标签一直存在，点一次增加一个，一直增加，可以在回调函数中删除script标签
+            oscript.onload = function() {
+                oscript.remove()
+            }
+        }
+    </script>
+
+
+    <script>
+        /* 
+            注意
+            1. 需要后端配合， 后端接口形式必须是 ****() 函数表达式
+            2. jsonp 缺点
+                （1）需要对动态添加的script标签绑定onload事件在加载完之后删除
+                （2）只能发送get请求, 不能发送post或其他请求
+        */
+    </script>
+</body>
+
+</html>

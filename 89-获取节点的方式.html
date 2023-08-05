@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>hello</div>
+    <div id="box" index="1">
+        alice
+        <p>111111</p>
+        <!-- 这里是注释 -->
+    </div>
+    
+    <div>tiechui </div>
+
+    <script>
+        /* 
+            div id="box" 下的所有子节点
+
+            1. 文本节点
+                      \n
+                    alice
+                  \n  
+
+            2. 元素节点
+                <p>111111</p
+            
+            3. 文本节点
+                \n
+
+            4. 注释节点
+                这里是注释
+                
+            5. 文本节点
+                \n
+        */
+
+        // childNodes属性, 获取到的是一个伪数组
+        // 可以获取到一个元素下的所有子节点
+        console.log(box.childNodes);
+                    /* 
+                        NodeList(5)
+                        0: text
+                        1: p
+                        2: text
+                        3: comment
+                        4: text
+                        length: 5
+                        [[Prototype]]: NodeList
+                    */
+        // children属性，获取到的是一个数组
+        // 可以获取到一个元素下的所有元素节点
+        console.log(box.children);
+                    /* 
+                        HTMLCollection [p]
+                        0: p
+                        length: 1
+                        [[Prototype]]: HTMLCollection
+                    */
+
+        
+        // firstChild属性，获取到的是第一个节点
+        console.log(box.firstChild);
+                    /* 
+                        #text
+                    */
+        // firstElementChild属性，获取到的是第一个元素节点
+        console.log(box.firstElementChild);
+                    /* 
+                        <p>111111</p>
+                    */
+
+
+        // lastChild属性，获取到的是最后一个节点
+        console.log(box.lastChild);
+                    /* 
+                        #text
+                    */
+        // lastElementChild属性，获取到的是最后一个元素节点
+        console.log(box.lastElementChild);
+                    /* 
+                        <p>111111</p>
+                    */
+
+
+        // previousSibling属性，获取到的是同级别的上一个节点
+        console.log(box.previousSibling);
+                    /* 
+                        #text
+                    */
+        // previousElementSibling属性，获取到的是上一个元素节点
+        console.log(box.previousElementSibling);
+                    /* 
+                        <div>hello</div>
+                    */
+        box.previousElementSibling.innerHTML = "world" // 通过获取到上一个元素节点，修改其内容
+                    /* 
+                        <div>world</div>
+                    */
+        
+        
+        // nēxtSibling属性，获取到的是同级别下一个节点
+        console.log(box.nextSibling);
+                    /* 
+                        #text
+                    */
+        // nextElementSibling属性，获取到的是同级别下一个元素节点
+        console.log(box.nextElementSibling);
+                    /* 
+                        <div>tiechui </div>
+                    */
+        box.nextElementSibling.dataset.index = 1 // 通过获取到下一个元素节点，修改其属性，添加自定义属性 data-index="1"
+                    /* 
+                        <div data-index="1">tiechui </div>
+                    */
+
+        
+        // parentNode属性，获取到的是父节点
+        console.log(box.parentNode);
+                    /* 
+                        <body>...</body>
+                    */
+        console.log(box.parentNode.parentNode);
+                    /* 
+                        <html>...</html>
+                    */
+        console.log(box.parentNode.parentNode.parentNode);
+                    /* 
+                        #document
+                    */
+        // parentElement属性，获取到的是父元素节点
+        console.log(box.parentElement);
+                    /* 
+                        <body>...</body>
+                    */
+        console.log(box.parentElement.parentElement);
+                    /* 
+                        <html>...</html>
+                    */
+        console.log(box.parentElement.parentElement.parentElement);
+                    /* 
+                        null 因为document不是一个元素
+                    */
+        
+
+        
+        // getAttribute(key)方法，获取到的是具体某个属性节点
+        console.log(box.getAttribute("id")); 
+                    /* 
+                        box
+                    */
+        // attributes，获取到的是所有属性节点
+        console.log(box.attributes);
+                    /* 
+                        NamedNodeMap {0: id, 1: index, id: id, index: index, length: 2}
+                        0: id
+                        1: index
+                        id: id
+                        index: index
+                        length: 2
+                        [[Prototype]]: NamedNodeMap
+                    */
+        console.log(box.attributes[0]);
+                    /* 
+                        id="box"
+                    */
+        console.log(box.attributes[1]);
+                    /* 
+                        index="1"
+                    */
+
+    </script>
+</body>
+</html>

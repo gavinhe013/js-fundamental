@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1. String() 所有类型都可以转换成字符串
+        var a = 100
+        var b = String(a)
+        console.log(a, b); // 100 '100'
+        console.log(typeof a, typeof b); // number string
+
+        // 2. toString()
+        var c = 100
+        var d = c.toString()
+        console.log(c, d); // 100 '100'
+        console.log(typeof c, typeof d); // number string
+        // toString() 无法转换null和undefined, 会报错
+
+        // 3. 用加号进行转换
+        var e = 100
+        var f = a + ""
+        console.log(e, f); // 100 '100'
+        console.log(typeof e, typeof f); // number string
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

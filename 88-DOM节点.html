@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>
+        alice
+        <p>11111</p>
+        <!-- 这里是注释 -->
+    </div>
+
+    <script>
+        /* 
+            div 下的所有子节点
+
+            1. 文本节点
+                      \n
+                    alice
+                  \n  
+
+            2. 元素节点
+                <p>111111</p
+            
+            3. 文本节点
+                \n
+
+            4. 注释节点
+                这里是注释
+                
+            5. 文本节点
+                \n
+        */
+
+
+
+
+
+        /* 
+            DOM节点 ： 元素节点/文本节点/属性节点
+
+            元素节点：就是html标签  head body div ul...
+                    通过getElementBy... 获取到的元素，就是元素节点
+            
+            属性节点：就是html标签的属性 id class type src href...
+                    通过getAttribute获取到的属性，就是元素的属性节点
+        
+            文本节点：就是html标签中的文本内容
+                    通过innerText获取到的文本，就是元素的文本节点
+            
+            根节点： Document  一个页面最大的节点
+                    但不是一个元素节点
+
+            根元素节点：html标签
+                    一个页面最大的元素节点
+                    包含所有元素节点
+
+            注释节点：注释内容
+                    单独书写的，不会显示在页面
+            
+            元素和元素，元素和文本节点是可以构成父子关系的
+        */
+
+        
+    </script>
+</body>
+</html>

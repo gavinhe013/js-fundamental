@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="module">
+        import { pajax } from './154-util.js'
+
+
+        // console.log(11111)
+
+        // async 表示这个函数里面有异步操作
+        // async function test() {
+        //     // await 表示等待异步操作完成
+        //     // await 后面可以放同步代码，但是没有意义，因为同步代码不会阻塞异步代码，也可以放promise对象
+
+        //     // 如果不加await，则先执行console.log(22222)，再执行异步代码
+        //     // 如果加了await，则先等待异步代码执行完，再执行后面的代码console.log(22222)
+
+
+        //     // 通过await可以让异步代码像同步代码一样执行
+
+        //     // 例如
+        //     // 1. 先拿到文章
+        //     var res = await pajax({
+        //         url: "http://localhost:3000/news",
+        //         data: {
+        //             author: "alice"
+        //         }
+        //     })
+
+        //     // 2. 再拿到评论
+        //     var res1 = await pajax({
+        //         url: "http://localhost:3000/comments",
+        //         data: {
+        //             newsId: res[0].id
+        //         }
+        //     })
+        //     console.log(res1)
+        //     console.log(22222)
+
+        //     return res1
+        // }
+
+        // // 上面function返回了一个promise对象，所以可以继续链式调用
+        // test().then(res => {
+        //     console.log("返回结果", res)
+        // }).catch(err => {
+        //     console.log("error", err)
+        // })
+
+        // console.log(33333)
+
+
+        async function test() {
+            // 如果在async function 内部捕获错误, 可以使用try catch
+            try {
+                var res = await pajax({
+                    url: "http://localhost:3000/news",
+                    data: {
+                        author: "alice"
+                    }
+                })
+
+                // 2. 再拿到评论
+                var res1 = await pajax({
+                    url: "http://localhost:3000/comments",
+                    data: {
+                        newsId: res[0].id
+                    }
+                })
+                
+                console.log(res1)
+                return res1
+
+            } catch (err) {
+                console.log("error", err)
+            }  
+            // 如果捕获了错误，不会影响后面的代码执行
+            console.log(22222)
+        }
+
+        test()
+    </script>
+</body>
+
+</html>

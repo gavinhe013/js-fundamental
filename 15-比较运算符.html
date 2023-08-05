@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var sum = 1000
+        console.log(sum > 200); // true
+
+        var sum1 = 200
+        console.log(sum1 >= 200); // true
+
+        // == 只判断值是否相等，不管数据类型
+        var age = '22'
+        console.log(age == 22); // true
+
+        // === 数值和类型都相等
+        console.log(age === 22); // false
+        console.log(parseInt(age) === 22); // true
+
+        console.log(true == 1); // true
+        console.log(true === 1); // false
+
+        console.log("" == 0); // true
+        console.log("" === 0); // false
+
+        console.log(undefined == 0); // false !!!
+        console.log(undefined === 0); // false
+
+        console.log(null == 0); // false !!! 
+        console.log(null === 0); // false
+
+        console.log(NaN == 0); // false !!!
+        console.log(NaN === 0); // false
+        
+        // != 比较符号两边值是否不等
+        console.log(1 != '1') // false
+        // !== 比较符号两边数据类型和值是否不等
+        console.log(1 !== '1'); // true
+
+        var x = 5
+        console.log(x != 6); // true
+        var y = '6'
+        console.log(y !== 6); // true
+        console.log(parseInt(y) !== 6); // false
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            position: relative;
+
+            width: 200px;
+            height: 50px;
+            background-color: yellow;
+            margin: 100px;
+        }
+
+        #box p {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+
+            display: none;
+
+            width: 300px;
+            height: 200px;
+            background-color: red;
+
+            /* 
+                pointer-events: none;
+                鼠标事件：穿透
+                即鼠标事件在此不触发
+            */
+            pointer-events: none;
+
+            z-index: 100; /* 使p标签在最上层 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 鼠标放在div上时，p出现，且跟随鼠标移动 -->
+    <div id="box">
+        alice的头像
+        <p>
+            alice的介绍
+        </p>
+    </div>
+
+    <div>1111111</div>
+
+    <script>
+        box.onmouseover = function() {
+            this.firstElementChild.style.display = 'block';
+        }
+
+        box.onmouseout = function() {
+            this.firstElementChild.style.display = 'none';
+        }
+
+        box.onmousemove = function(evt) {
+            // 为了避免出现鼠标悬浮在子元素上后子元素重新定位回左上角的情况，所以通过加上50px的偏移量来避免
+            // this.firstElementChild.style.left = evt.offsetX + 50 + "px"
+            // this.firstElementChild.style.top = evt.offsetY + 50 + "px"
+
+            // 通过给p标签添加pointer-events: none; 避免在p上触发鼠标事件
+            this.firstElementChild.style.left = evt.offsetX + "px"
+            this.firstElementChild.style.top = evt.offsetY +  "px"
+        }
+    </script>
+</body>
+
+</html>

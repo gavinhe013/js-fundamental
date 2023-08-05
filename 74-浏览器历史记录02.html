@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    浏览器历史记录02.html
+
+    <a href="74-浏览器历史记录03.html">下一页</a>
+    <button id="btn">history.back()</button>
+    <script>
+        
+        btn.onclick = function() {
+            // history.back() 通过浏览器历史记录，返回上一页
+            // history.back()
+
+            // history.go(-#) 传入-1表示返回上一页，-2则回退2页
+            history.go(-1)
+        }
+    </script>
+</body>
+</html>

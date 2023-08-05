@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ajax === async javascript and xml
+        // 但实际前端更多的是使用json
+        // JSON.parse() 把json字符串转换成js对象
+        // ajax用户体验好，不需要刷新页面就可以更新数据，减轻服务端和带宽负担
+
+
+
+        // 1.创建XHR对象 new XMLHttpRequest()
+        var xhr = new XMLHttpRequest();
+
+
+        // 2. 配置 open(请求方式，请求地址，是否异步)
+        xhr.open("GET", "http://localhost:5500/142-2-1.json")
+        // 地址构成：http 或者 https协议 + 域名或者ip + 端口号 + 路径 + 查询字符串
+        // localhost 是本机域名，指向本机ip地址
+
+
+        // 3. send
+        xhr.send();
+
+
+        // 4. 接收数据，注册一个事件，拿到数据
+        // readystatechange 事件，当xhr对象的readyState属性发生变化时触发，即和后端进行交互时触发
+        /* 
+            readyState === 0 表示未初始化，还没有调用open方法
+            readyState === 1 表示配置信息已经完成， 也就是调用了open方法之后
+            readyState === 2 表示请求已经发送，也就是调用了send方法之后
+            readyState === 3 表示正在解析相应内容
+            readyState === 4 表示响应内容解析完成，可以在客户端调用了
+
+            所以只有当readyState === 4 时，才能使用服务端返回的数据
+        */
+        // 只有执行了send方法，才会触发readystatechange事件的回调函数
+        // xhr.onreadystatechange = function () {
+        //     // readyState === 4 表示内容解析完成并可以使用，status === 200 表示请求成功， 如果是404表示请求失败
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         console.log("数据解析完成", xhr.responseText); // hello world
+        //     } else if (xhr.readyState === 4 && xhr.status === 404) {
+        //         console.log("请求失败, 没有找到这个页面");
+        //         location.href = "./142-3-404.html";
+        //     }
+        // }
+
+        // 状态码status 200-299 表示请求成功， 最常用的是200
+        // 如果要判断200-299，可以使用正则表达式
+        // if (xhr.readyState === 4 && /^2\d{2}$/.test(xhr.status)) {}
+
+        // 404 表示未找到页面
+
+        // load事件，当请求成功时触发, 即readyState === 4触发
+        xhr.onload = function () {
+            // 此时仅需要判断status即可
+            if(xhr.status === 200) {
+                // 把json字符串转换成js对象
+                let obj = JSON.parse(xhr.responseText);
+                console.log(obj);
+                document.write(obj.name);
+            } else if(xhr.status === 404) {
+                console.log("请求失败, 没有找到这个页面");
+                location.href = "./142-3-404.html";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

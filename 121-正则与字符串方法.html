@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // str.replace(正则表达式, 替换成的内容)
+        var str = "adearfa"
+        // 如果replace不用正则，或者使用默认懒惰的正则，只能替换第一个匹配到的内容
+        var newstr = str.replace(/a/, "*")
+        console.log(newstr); // *dearfa
+        var newstr_1 = str.replace(/a/g, "*") // 通过全局匹配g，把所有的a都替换成*
+        console.log(newstr_1); // *de*rf*
+
+
+        // str.search(正则，要查找的内容)
+        console.log(str.search("a")); // 0
+        // search中只能找到第一个匹配到的内容，不能通过g全局匹配
+        console.log(str.search(/a/)); // 0
+        console.log(str.search("ax")); // -1 不存在
+
+
+        // str.match(捕获正则)
+        console.log(str.match("ad")); // ['ad', index: 0, input: 'adearfa', groups: undefined]
+
+        var datestr1 = "time is from 2029-01-01 12:20:20 to 2029-11-01 12:20:20"
+        // 设置全局g，可以匹配到所有符合正则的内容，并且返回一个数组包含所有结果
+        console.log(datestr1.match(/(\d{4})-(\d{1,2})-(\d{1,2})/g)); // ['2029-01-01', '2029-11-01']
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 三元运算符
+        // condition ? statement1 : statement2
+        // if condition === true: 执行 statement1，if condition === false: 执行statement2
+
+        10 < 20 ? console.log(1111) : console.log(2222) // 1111
+
+        // 满200减10
+        var sum = 210
+        var youhuisum = sum > 200 ? sum-10 : sum
+        console.log(sum, youhuisum); // 210 200
+
+        // 满200减10， 满100减5
+        var sum1 = 150
+        var youhuisum1 = sum1 > 200 ? 
+                                sum1-10 : (sum1 > 100 ? sum1-5 : sum1)
+        console.log(sum1, youhuisum1); // 150 145
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

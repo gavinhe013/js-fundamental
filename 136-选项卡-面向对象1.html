@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function CreateObj(name) {
+            this.name = name;
+        }
+
+        CreateObj.prototype.getName = function() {
+            console.log("11111", this.name);
+        }
+
+        var obj1 = new CreateObj("alice");
+        obj1.getName(); // 11111 alice
+
+        // 这里相当于给obj1添加了一个getName方法，只对于obj1覆盖getName()，但是CreateObj.prototype.getName方法不会被覆盖
+        obj1.getName = function() {
+            console.log("22222");
+        }
+        obj1.getName(); // 22222
+
+        var obj2 = new CreateObj("bob");
+        // CreateObj.prototype.getName方法不会被覆盖，所以这里还是1111 bob
+        obj2.getName(); // 1111 bob
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            /* width: 100%;
+            height: 100%; */
+
+            width: 2000px;
+            height: 2000px;
+            /* 此时获取的高度和宽度包含滚动条，但是不包含被滚动条隐藏的部分，因为挤压了可视范围 */
+        }
+    </style>
+    <script>
+        // innerHeight 获取当前浏览器可视区域的高度
+        // innerWidth 获取当前浏览器可视区域的宽度
+        console.log(window.innerHeight, innerHeight);
+        console.log(window.innerWidth, innerWidth);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

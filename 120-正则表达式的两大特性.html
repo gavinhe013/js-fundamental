@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. 懒惰，默认只匹配或捕获满足规则的第一项， 解决方案： 使用全局标示符 g
+        // 2. 贪婪，默认情况下，正则表达式会尽可能多的匹配或捕获满足规则的内容，解决方案：使用非贪婪模式 ? 限制捕获次数
+        var reg = /\d{1,4}/
+        console.log(reg.exec("aa123456bb")); // ['1234', index: 2, input: 'aa1234bb', groups: undefined]
+        // 非贪婪模式 /?/ 
+        var reg1 = /\d{1,4}?/
+        console.log(reg1.exec("aa123456bb")); // ['1', index: 2, input: 'aa123456bb', groups: undefined]
+
+        /* 
+            非贪婪模式
+            *? 尽量最少的捕获满足条件的字符
+            +? 尽量最少的捕获满足条件的字符
+            {n,}? 捕获n次
+            {n,m}? 捕获n次
+        */
+
+        var reg2 = /\d*?/
+        console.log(reg2.exec('abc')); // ['', index: 0, input: 'abc', groups: undefined]
+        console.log(reg2.exec('abc123')); // ['', index: 0, input: 'abc123', groups: undefined]
+
+        var reg3 = /\d+?/
+        console.log(reg3.exec('abc')); // null
+        console.log(reg3.exec('abc123')); // ['1', index: 3, input: 'abc123', groups: undefined]
+
+        var reg4 = /\d??/
+        console.log(reg4.exec('abc')); // ['', index: 0, input: 'abc', groups: undefined]
+        console.log(reg4.exec('abc123')); // ['', index: 0, input: 'abc123', groups: undefined]
+
+
+        var str = `<p class="active"><span>kerwin</span></p>`
+        var myreg = /<p.*>/
+        console.log(myreg.exec(str)); // ['<p class="active"><span>kerwin</span></p>', index: 0, input: '<p class="active"><span>kerwin</span></p>', groups: undefined]
+        var myreg1 = /<p.*?>/ // 非贪婪模式 尽可能少的捕获在>之前的内容
+        console.log(myreg1.exec(str)); // ['<p class="active">', index: 0, input: '<p class="active"><span>kerwin</span></p>', groups: undefined]
+    </script>
+</body>
+</html>

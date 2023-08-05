@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box" abc="aaa">hello </div>
+    <input type="text" value="hello" id="username">
+
+    <input type="checkbox" checked id="rember">
+
+    <img src="" alt="" id="photo">
+
+    <ul>
+        <li>1111</li>
+        <li>2222</li>
+        <li>3333</li>
+    </ul>
+
+    <div id="box2" data-gavin="hello" data-tiechui="hello2"></div>
+
+    <script>
+        /* 
+            元素自带（原生）属性: 元素本身自带的属性， 自动生效
+            自定义属性：自己添加的， 但不会给页面带来任何改变，没有任何意义，但是可以加上
+        */
+
+        // 操作原生属性，以实现效果
+
+        box.innerHTML = "222"
+
+        console.log(username.type); // text
+        username.type = "password" // 把text类型的input标签 变成 password类型的input标签 
+
+        console.log(rember.checked); // true
+        rember.checked = false // 取消勾选checkbox
+
+        photo.src = "https://s.yimg.com/ny/api/res/1.2/fqrM64Hqp5wX4Osob.ss5Q--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtjZj13ZWJw/https://s.yimg.com/os/creatr-uploaded-images/2023-05/d371f440-f91a-11ed-afbe-d8de89a8921b"
+        // 给img标签赋予图片地址，从而页面可以显示出图片
+
+
+        // 自定义属性
+
+        // setAttribute("key", "value") 给元素添加自定义属性
+        box.setAttribute("tiechui", "222222")
+
+        // getAttribute(key) 根据key获取目标元素自定义属性的value
+        console.log(box.getAttribute("tiechui")); // 222222
+
+        // removeAttribute(key) 根据key删除目标元素自定义属性
+        box.removeAttribute("tiechui")
+        box.removeAttribute("abc")
+
+
+
+
+        // H5 => 约定规范，在加自定义属性的时候，key的前缀要加上 “data-” 以示和原生属性的区分
+
+        // dataset里包含所有通过用"data-"前缀命名的和通过规范添加的自定义属性
+
+        // dataset.key = value 规范的添加自定义属性，在元素中自动给自定义属性添加"data-"前缀
+        box2.dataset.xiaoming = "hello3"
+
+        // 通过dataset获取自定义属性的kv
+        console.log(box2.dataset); //DOMStringMap {gavin: 'hello', tiechui: 'hello2', xiaoming: 'hello3'}
+        console.log(box2.dataset.tiechui); // hello2
+
+        // delete box2.dataset.key 规范的删除自定义属性
+        delete box2.dataset.xiaoming
+        delete box2.dataset.gavin
+        delete box2.dataset.tiechui
+
+
+
+
+        // 给一组li标签添加自定义属性，自定义索引
+        var oitems = document.getElementsByTagName("li")
+        for (var i = 0; i < oitems.length; i++) {
+            oitems[i].dataset.gavinIndex = i
+        }
+        /* 
+            <li data-gavin-index="0">1111</li>
+            <li data-gavin-index="1">2222</li>
+            <li data-gavin-index="2">3333</li>
+        */
+    </script>
+</body>
+
+</html>

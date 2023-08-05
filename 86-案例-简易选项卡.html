@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+        }
+
+        li {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            flex:1; 
+            /* flex: 1，可以让弹性项目平均占据可用空间，并在空间不足时按比例收缩。这在创建自适应布局和响应式设计时非常有用。 */
+        }
+
+        .active {
+            color: red;
+            border-bottom: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="active" id="item1">正在热映</li>
+        <li id="item2">即将上映</li>
+    </ul>
+
+    <script>
+        var li_list = document.querySelectorAll("li");
+        var li1 = li_list[0];
+        var li2 = li_list[1];
+
+        console.log(li1);
+        console.log(li2);
+
+        li1.onclick = function() {
+            li1.classList.add("active")
+            li2.classList.remove("active")
+        }
+
+        li2.onclick = function() {
+            li2.classList.add("active")
+            li1.classList.remove("active")
+        }
+
+
+        // 以上称为选项卡功能
+    </script>
+</body>
+</html>

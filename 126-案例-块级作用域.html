@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .header {
+            display: flex;
+            width: 500px;
+            height: 50px;
+        }
+
+        .header li {
+            flex: 1;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid #000;
+            margin-right: -1px;
+        }
+
+        .box {
+            position: relative;
+            margin-top: 4px;
+        }
+
+        .box li {
+            display: none;
+
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            width: 500px;
+            height: 200px;
+        }
+
+        .box li:nth-child(1) {
+            background-color: red;
+        }
+
+        .box li:nth-child(2) {
+            background-color: skyblue;
+        }
+
+        .box li:nth-child(3) {
+            background-color: green
+        }
+
+        .box li:nth-child(4) {
+            background-color: pink;
+        }
+
+        .header .active {
+            background-color: yellow;
+        }
+
+
+        .box .active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="header">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <ul class="box">
+        <li class="active">1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444</li>
+    </ul>
+
+    <script>
+        var oHeaderItems = document.querySelectorAll(".header li");
+        var oBoxItems = document.querySelectorAll(".box li");
+
+        for (let i = 0; i < oHeaderItems.length; i++) {
+            // 由于let是块级作用域，所以这里的i是每次循环都会重新声明的变量，每个i只存在于当前循环中，因此不会干扰事件的绑定中的i
+            oHeaderItems[i].onclick = function () {
+                // 先给所有header中的li去掉active类名，并给所有box中的li去掉active类名
+                // 保证每次点击都是从一个干净的状态开始
+                for (let j = 0; j < oHeaderItems.length; j++) {
+                    oHeaderItems[j].classList.remove("active");
+                    oBoxItems[j].classList.remove("active");
+                }
+
+                // 根据被被点击的那个header的li的索引, 这里可以直接使用i, 访问到具体的li元素，添加active类名
+                oHeaderItems[i].classList.add("active");
+                oBoxItems[i].classList.add("active");
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        var a = "100"
+        var b = Number(a)
+        console.log(a, b) // 100 100
+        console.log(typeof a, typeof b); // string number
+
+        var c = "abc"
+        var d = Number(c) 
+        console.log(c, d); // abc NaN
+        console.log(typeof c, typeof d); // string number, NaN属于number类型
+
+        var e = true
+        var f = Number(e) 
+        console.log(e, f); // true 1     true -> 1 false -> 0
+        console.log(typeof e, typeof f); // boolean number
+
+        var g = null
+        var h = Number(g)
+        console.log(g, h); // null 0
+        console.log(typeof g, typeof h); // object number
+
+        var i = undefined
+        var j = Number(i)
+        console.log(i, j); // undefined NaN
+        console.log(typeof i, typeof j); // undefined number
+
+        var l = "123px"
+        var m = parseInt(l) // 可以把前半部分整数数字类型的转换
+        console.log(l, m); // 123px 123
+        console.log(typeof l, typeof m); // string number
+
+        var n = "1.25rem"
+        var o = parseFloat(n) // 可以把前半部分浮点数转换
+        console.log(n, o); // 1.25rem 1.25
+        console.log(typeof n, typeof o); // string number
+
+        // 通过非加号的方式把字符串进行转换成数值类型，比如 -0 *1 /1
+        var p = "100"
+        var q = a/1
+        console.log(q); // 100
+        console.log(typeof q); // number
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

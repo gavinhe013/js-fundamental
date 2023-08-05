@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="mytext">
+    <script>
+        var test1 = function () {
+            console.log("test1");
+        }
+
+        // 箭头函数
+        var test2 = () => {
+            console.log("test2");
+        }
+
+        test1()
+        test2()
+
+        /* 
+            1. 如果只有一个形参，() 可以省略
+            2. 如果函数体只有一句代码，{} 可以省略, 一句代只写返回值，不用加return
+            3. 没有arguments
+            4. this指向问题, 箭头函数没有自己的this，箭头函数的this指向父级作用域的this
+        */
+
+        // 1. 如果只有一个形参，() 可以省略
+        var test3 = a => {
+            console.log(111, a);
+        }
+
+        test3("alice") // 111 alice
+
+
+        // 2. 如果函数体只有一句代码，{} 可以省略, 一句代码只写返回值，不用加return
+        var test4 = a => console.log(222, a);
+        var test5 = a => 100 * a; // 相当于 return 100 * a
+
+        test4("alice") // 222 alice
+        console.log(test5(2))  // 200
+
+        var list = ["aaa", "bbb", "ccc"]
+        // var newlist = list.map(function (item) {
+        //     return `<li>${item}</li>`
+        // })
+        var newlist = list.map(item => `<li>${item}</li>`)
+        console.log(newlist);
+
+        // 如果返回的是一个对象，省略return，需要用()包裹返回的对象
+        var test6 = () => ({
+            name: "alice"
+        })
+
+        console.log(test6()); // {name: "alice"}
+
+
+        // 3. 没有arguments
+
+        // 在正常定义的函数中，arguments是一个类数组对象，包含了函数调用时传入的所有参数
+        var test7 = function () {
+            console.log(arguments[0], arguments[1], arguments[2]);
+        }
+
+        test7(1, 2, 3) // 1 2 3
+
+        // 在箭头函数中，没有arguments
+        var test8 = () => {
+            console.log(arguments[0], arguments[1], arguments[2]);
+        }
+
+        // test8(1, 2, 3) // 报错 arguments is not defined
+
+        // mytext.oninput = function () {
+        //     setTimeout(function() {
+        //         console.log(this); // window 因为是window调用的这个函数， 此时this.value 是undefined
+        //     }, 1000)
+        // }
+
+        // 解决方法1： 在回调函数外面定义一个变量，保存this
+        // mytext.oninput = function () {
+        //     var that = this
+        //     setTimeout(function() {
+        //         console.log(that.value); // 此时that.value 是mytext的value
+        //     }, 1000)
+        // }
+
+        // 解决方法2： 使用箭头函数，箭头函数没有自己的this，箭头函数的this指向父级作用域的this，此时this就是 <input type="text" id="mytext">
+        mytext.oninput = function () {
+            setTimeout(() => {
+                console.log(this); // <input type="text" id="mytext"> 因为是mytext调用的这个函数， 此时this.value 是mytext的value
+            }, 1000)
+        }
+
+
+        // 函数的默认参数，如果没有传参，就使用默认参数
+        function test9(a = 1, b = 2) {
+            return a + b
+        }
+        console.log(test9(10, 20)); // 30
+        console.log(test9());    // 3
+
+        // 箭头函数的默认参数
+        var test10 = (a = 1, b = 2) => a + b
+        console.log(test10(10, 20));     // 30
+        console.log(test10()); // 3
+    </script>
+</body>
+
+</html>

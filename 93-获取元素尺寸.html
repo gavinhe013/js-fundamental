@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            border: 5px solid red;
+            background-color: yellow;
+            box-sizing: border-box;
+            /* display: none; */
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+
+    <script>
+        // console.log(getComputedStyle(box).width); // 100px 只能获取到内容的宽度
+        // console.log(box.style.width) // 获取不到，因为此方法只能获取inline-style
+
+        console.log(box.offsetWidth); // 130 内容宽度 + padding + border
+        console.log(box.offsetHeight); // 130 内容高度 + padding + border
+
+        /* 
+            offset*
+            注意：
+                获取到的值是数字
+                如果盒子添加了 box-sizing: border-box 那么获取到的offsetWidth和offsetHeight就是内容的宽高，100 100 依旧是 content+padding+border
+                如果设置了display: none; 那么获取到的宽高就是 0 0     
+        */ 
+
+        console.log(box.clientWidth); // 120 内容宽度 + padding
+        console.log(box.clientHeight); // 120 内容高度 + padding
+
+        /* 
+            client*
+            注意：
+                获取到的值是数字
+                如果盒子添加了 box-sizing: border-box 那么获取到的clientWidth和clientHeight就是内容的宽高，90 90 因为border-box挤压padding和content
+                如果设置了display: none; 那么获取到的宽高就是 0 0    
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 父类
+        class Person {
+            constructor (name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            say() {
+                console.log(this.name, "hello");
+            }
+        }
+
+        // extends 相当于原型继承，子类自动继承父类的方法
+        class Student extends Person {
+
+            // 如果要继承父类的属性，需要给子类写构造函数
+            constructor(name,age,grade) {
+                // super关键词继承父类属性
+                super(name,age)
+                // 添加子类自己的属性
+                this.grade = grade
+            }
+
+            // 覆盖父类方法, 并增强
+            say() {
+                // 利用super关键词调用父类方法
+                super.say()
+                console.log(this.name, "你好");
+            }
+        }
+        var obj = new Student("alice", 18, 100)
+        console.log(obj); // Student {name: 'alice', age: 18, grade: 100}
+        obj.say() // alice hello
+    </script>
+</body>
+</html>

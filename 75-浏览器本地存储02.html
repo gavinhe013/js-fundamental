@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">存</button>
+    <button id="btn2">取</button>
+    <button id="btn3">删</button>
+    <button id="btn4">清空</button>
+
+    <script>
+        // localStorage 永久存储
+        // sessionStoratge 会话存储，关闭页面就丢失
+
+
+        btn.onclick = function() {
+            // sessionStorage.setItem(key, value) 在session存信息
+            // sessionStorage.setItem("name", "alice")
+            // 调试工具 -> Application -> Session Storage
+
+            // 修改的话也用sessionStorage.setItem(key, value), 此时只需要修改value即可，结果会覆盖
+            
+            /* 
+                注意： 存，只能存字符串，会被强行转换成字符串
+                    
+                    所以如果要存对象，要先转换成json-str
+            */
+            sessionStorage.setItem("obj", JSON.stringify({name:"alice", age:20}))
+            
+
+        }
+
+        btn2.onclick = function() {
+            // sessionStorage.getItem(key) 通过key取session存的value
+            console.log(JSON.parse(sessionStorage.getItem("obj")).name); // alice
+                        // json-str -> obj -> obj[key] or obj.key
+        }
+
+        btn3.onclick = function() {
+            // sessionStorage.removeItem(key) 通过key删除session存的key-value
+            sessionStorage.removeItem("obj")
+        }
+
+        btn4.onclick = function() {
+            // sessionStorage.clear() 清空session存储
+            sessionStorage.clear()
+        }
+    </script>
+</body>
+</html>

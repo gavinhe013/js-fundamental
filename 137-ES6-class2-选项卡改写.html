@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .header {
+            display: flex;
+            width: 500px;
+            height: 50px;
+        }
+
+        .header li {
+            flex: 1;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid #000;
+            margin-right: -1px;
+        }
+
+        .box {
+            position: relative;
+            height: 200px;
+            margin-top: 4px;
+        }
+
+        .box li {
+            display: none;
+
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            width: 500px;
+            height: 200px;
+        }
+
+        .box li:nth-child(1) {
+            background-color: red;
+        }
+
+        .box li:nth-child(2) {
+            background-color: skyblue;
+        }
+
+        .box li:nth-child(3) {
+            background-color: green
+        }
+
+        .box li:nth-child(4) {
+            background-color: pink;
+        }
+
+        .header .active {
+            background-color: yellow;
+        }
+
+
+        .box .active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+        <ul class="header">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+        <ul class="box">
+            <li class="active">1111</li>
+            <li>2222</li>
+            <li>3333</li>
+            <li>4444</li>
+        </ul>
+    </div>
+
+    <div class="container2">
+        <ul class="header">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+        <ul class="box">
+            <li class="active">1111</li>
+            <li>2222</li>
+            <li>3333</li>
+            <li>4444</li>
+        </ul>
+    </div>
+
+
+
+    <script type="module"> 
+        // 把选项卡的功能封装到一个js文件中，然后在需要的页面中引入即可
+        // 为了避免变量名冲突，通过模块化的方式来引入，export default导出，import导入，导入的时候可以起别名
+        import MyTabs from "./137-Tabs-class.js";
+
+
+        /* 
+            通过面向对象的方式来实现选项卡
+            从而实现提高代码的复用
+        */
+
+       
+
+
+        // 针对不同的对象需要触发不同的事件，可以传入事件类型，来实现不同的事件
+
+        let tab1 = new MyTabs(".container1", "click");
+        // tab1.change();
+        let tab2 = new MyTabs(".container2", "mouseover");
+        // tab2.change();
+
+
+
+        /*
+            面向对象的方式：
+            对象属性写在构造函数中
+            方法写在原型中
+        
+        */
+    </script>
+</body>
+
+</html>

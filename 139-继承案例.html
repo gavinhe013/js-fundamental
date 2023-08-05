@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box1">
+        <h1></h1>
+        <ul></ul>
+    </div>
+
+    <div class="box2">
+        <h1></h1>
+        <img src="" style="width: 100px;" alt="img">
+        <ul></ul>
+    </div>
+
+
+    <script>
+        var data1 = {
+            title: "体育",
+            list: ["体育-1", "体育-2", "体育-3"]
+        }
+
+        var data2 = {
+            title: "综艺",
+            url: "https://cdn.eventcinemas.com.au/cdn/resources/movies/16704/images/largeposter.jpg",
+            list: ["综艺-1", "综艺-2", "综艺-3"]
+        }
+
+        // 给data设置一个默认值，防止在调用的时候，不传递data参数报错，因为这里需要读取data的值，data不能为undefined
+        function CreateList(select, data={}) {
+            this.ele = document.querySelector(select);
+            this.title = data.title;
+            this.list = data.list;
+        }
+
+
+        // 在构造函数的原型中添加函数
+        CreateList.prototype.render = function() {
+                // 渲染页面
+
+                // 在获取到的节点中，找到h1和ul
+                var h1 = this.ele.querySelector("h1");
+                var ul = this.ele.querySelector("ul");
+
+                h1.innerHTML = this.title;
+                ul.innerHTML = this.list.map(item => `<li>${item}</li>`).join("");
+            }
+
+
+        var obj1 = new CreateList(".box1", data1);
+        obj1.render();
+
+
+        
+
+        // 针对不同类别列表的数据，继承CreateList，实现不同的渲染效果
+        function CreateImgList(select, data) {
+            // 继承CreateList属性
+            CreateList.call(this, select, data);
+            // 添加自己的图片属性
+            this.imgUrl = data.url;
+        }
+
+        // 原型继承，继承方法
+        // 此时必须要传参，或者给父类的构造函数添加默认参数，否则会报错
+        CreateImgList.prototype = new CreateList();
+
+        // 增强父类render方法，从而渲染图片
+        // CreateImgList.prototype.enhanceRender = function() {
+        //     // 渲染列表
+        //     this.render()
+
+        //     // 渲染图片
+        //     var img = this.ele.querySelector("img");
+        //     img.src= this.imgUrl
+
+        // }
+
+        // 在不改变父类render方法的名字情况下，增强父类render方法，从而渲染图片
+        CreateImgList.prototype.render = function() {
+            // 渲染列表
+            CreateList.prototype.render.call(this);
+
+            // 渲染图片
+            var img = this.ele.querySelector("img");
+            img.src= this.imgUrl
+
+        }
+
+        var obj2 = new CreateImgList(".box2", data2);
+        obj2.render();
+        console.log(obj2);
+
+    </script>
+</body>
+</html>

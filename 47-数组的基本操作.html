@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // length 可读可写
+        var arr1 = [1, 2, 3, 4, 5]
+        console.log(arr1.length); // 5
+        arr1.length = 8 // 添加3个空长度，undefined
+        console.log(arr1);
+        arr1.length = 3 // 从后面删除2个
+        console.log(arr1); // [1,2,3]
+
+        // 清空数组
+        arr1.length = 0
+        console.log(arr1); // []
+
+        // 索引
+        var arr2 = ["alice", "bob", "claire"]
+        console.log(arr2[0]); // alice
+        console.log(arr2[5]); // 超过索引范围哦 undefined
+
+        arr2[0] = "alex" // 把index=0位置的元素修改
+        console.log(arr2);
+        
+        arr2[3] = "david" // index=3超出索引范围，增加数组长度，并在index=3的位置添加元素
+        console.log(arr2);
+        arr2[10] = "kim" // index=10超出索引范围，增加数组长度，并在index=10的位置添加元素，中间索引位置为空，undefined
+        console.log(arr2); 
+
+        // 遍历
+        var arr3 = [3,4,5,6,7,8]
+        for (var i = 0; i < arr3.length; i++) {
+            console.log(arr3[i]);
+        }
+
+        // 数组复制
+        var arr4 = arr3
+        console.log(arr3, arr4);
+        arr4[0] = "aaa"
+        console.log(arr3, arr4); // arr4 和 arr3 的值同时发生改变
+
+
+        var arr5 = [3,4,5,6,7,8]
+        var arr6 = []
+        for (var i = 0; i < arr3.length; i++) {
+            arr6[i] = arr5[i]
+        }
+        console.log(arr5, arr6);
+        arr6[0] = "abc"
+        console.log(arr5, arr6); // 此时只有arr6的值发生改变，因为arr5和arr6的地址不一样
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

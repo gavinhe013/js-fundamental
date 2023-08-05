@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        click - <span>11111</span>
+    </div>
+
+    <script>
+        // this 关键字
+
+        // this 谁调用就指向谁 (es6 箭头函数不算)
+
+        // 全局
+        console.log(this); // window
+
+        function test() {
+            console.log(this);
+        }
+
+        test() // window, 因为在全局环境下调用test()，所以this指向window
+
+
+        // 对象
+        var obj = {
+            name: 'alice',
+            test: function () {
+                console.log(this);
+            }
+        }
+
+        obj.test() // {name: 'alice', test: ƒ}, 因为test()是obj对象的方法，obj调用的test(). 所以this指向obj
+
+
+        // setTimeout
+        setTimeout(function () {
+            console.log(this); // window, 因为是在一定时间之后window调用函数，所以this指向window
+        }, 2000)
+        // setInterval
+        setInterval(function () {
+            console.log(this); // window, 因为是在一定时间之后window调用函数，所以this指向window
+        }, 2000)
+
+
+        // 事件绑定中的this
+        box.onclick = function (evt) {
+            console.log(this); // <div id="box">click</div>, 因为是box调用事件的函数，所以this指向box
+            console.log(evt.target); // 如果点击的是span内容，那么结果是<span>11111</span>，但是this还是指向box
+        }
+        // dom0和dom2事件绑定中的this都指向调用事件的对象
+        // box.addEventListener("click", function() {
+        //     console.log(this); // <div id="box">click</div>
+        // })
+    </script>
+</body>
+
+</html>

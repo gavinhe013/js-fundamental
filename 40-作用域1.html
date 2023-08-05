@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 全局作用域，window对象
+        var myname = "alice"
+        console.log(window.myname);
+
+        // 局部作用域
+        // 只有函数能生成局部作用域
+
+        // 全局函数
+        function test() {{
+            console.log(mynickname, myname); // undefiend alice, myname是全局变量在局部可以访问到
+            var mynickname = "aa" // 局部作用域 上一级无法调用
+            console.log("test", mynickname);
+        }}
+        console.log(mynickname); // 报错，因为局部作用域，访问不到
+    </script>
+
+    <script>
+        console.log(myname);
+        test() // undefined alice, test aa
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

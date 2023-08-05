@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function test() {
+        //     let name = "alice"
+        //     console.log(name)
+        // }
+
+        // test()
+
+
+        /* 
+            函数有返回值，而且返回值必须是复杂类型，而且要复制给外面的变量
+        */
+        function test() {
+            let name = "alice" // name在test执行完之后会被回收
+            console.log(name)
+            let obj = {
+                a: 1,
+                b: 2
+            }
+            return obj // obj在test执行完之后因为被返回而且有变量接住，所以不会被回收
+        }
+
+        let obj1 = test()
+        let obj2 = test()
+        console.log(obj1 === obj2) // false，因为obj1和obj2是两个不同的对象地址，只是内容相同而已
+
+        obj1 = null // obj1被回收
+        obj2 = null // obj2被回收
+        // 到此，内存都被释放了
+    </script>
+</body>
+
+</html>

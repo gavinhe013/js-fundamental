@@ -1,0 +1,28 @@
+{
+  "list": [
+    {
+      "text": "sample todo-list item",
+      "id": 1
+    }
+  ],
+  "looplist": [
+    {
+      "id": 1,
+      "title": "looplist-11111"
+    },
+    {
+      "id": 2,
+      "title": "looplist-22222"
+    }
+  ],
+  "datalist": [
+    {
+      "id": 1,
+      "title": "datalist-11111"
+    },
+    {
+      "id": 2,
+      "title": "datalist-22222"
+    }
+  ]
+}

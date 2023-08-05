@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 先通过a标签跳转，添加历史记录 -->
+    <a href="74-浏览器历史记录02.html">下一页</a>
+    <button id="btn">前进</button>
+
+    <script>
+        btn.onclick = function() {
+            // location.href = "74-浏览器历史记录02.html"
+            
+            // history.forward() 在有了下一页面的历史记录基础之上, 跳转到下一页面
+            // history.forward()
+
+
+            // history.go(#) 传入1表示在有了下一页面的历史记录基础上跳转到下一页，传入2则表示跳转2页
+            history.go(1)
+        }
+    </script>
+</body>
+</html>

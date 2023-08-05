@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 简单数据类型：存在stack中
+            // number, string, boolean
+        // 复杂数据类型：存在heap中，stack中存的是地址
+
+
+        var str = "abcd"
+        var strcp = str
+        console.log(str === strcp); // true
+
+        strcp = "bcd"
+        console.log(str, strcp); // abcd bcd
+
+
+
+
+        var obj = {
+            name: "alice",
+            age: 100
+        }
+
+        var obj2 = obj
+
+        console.log(obj === obj2); // true
+        obj2.name = "bob"
+        console.log(obj === obj2); // true
+        console.log(obj, obj2); 
+
+
+
+        var obj1 = {name: "alice"}
+        var obj3 = {name: "alice"}
+
+        console.log(obj1 == obj3); // false
+
+
+        // 对象的复制
+        var objX = {
+            name: "alice",
+            age: 100,
+            location: "beijing"
+        }
+
+        var objY = {}
+        
+        for (var i in objX) {
+            // 拿到原对象中的每一个key，然后用增加属性的方式给新对象添加相应的value
+            objY[i] = objX[i]
+        }
+
+        console.log(objX, objY);
+
+        objY.name = "bob"
+        console.log(objX, objY);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

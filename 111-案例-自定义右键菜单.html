@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            position: absolute;
+            list-style: none;
+            width: 200px;
+            padding: 10px;
+            border: 1px solid black;
+            display: none;
+        }
+
+        ul li:hover {
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="list">
+        <li class="aaa">1111</li>
+        <li class="bbb">2222</li>
+        <li class="ccc">3333</li>
+    </ul>
+
+
+    <script>
+        document.addEventListener("contextmenu", function (evt) {
+            // 阻止浏览器默认右键菜单
+            evt.preventDefault()
+            var list = document.querySelector("#list")
+            // 显示自定义ul
+            list.style.display = "block"
+
+            // 通过获取距离窗口左上角的距离，设置ul的即时位置
+            var x = evt.clientX
+            var y = evt.clientY
+
+            // 边界判断1: 是否超出右边界
+            if (x >= document.documentElement.clientWidth - list.offsetWidth) {
+                x = document.documentElement.clientWidth - list.offsetWidth
+            }
+
+            // 边界判断2: 是否超出左边界
+            // if (x <= 0) {
+            //     x = 0
+            // }
+
+            // 边界判断3: 是否超出下边界
+            if (y >= document.documentElement.clientHeight - list.offsetHeight) {
+                y = document.documentElement.clientHeight - list.offsetHeight
+            }
+
+            // 边界判断4: 是否超出上边界
+            // if (y <= 0) {
+            //     y = 0
+            // }
+
+            list.style.left = x + "px"
+            list.style.top = y + "px"
+        })
+
+
+        // 点击其他位置，隐藏自定义ul
+        document.addEventListener("click", function (evt) {
+            var list = document.querySelector("#list")
+            list.style.display = "none"
+
+            // 如果点击在自定义ul内，也会隐藏
+            // 因为冒泡机制，所以单击触发在自定义ul上的事件，也会冒泡到document上，所以会隐藏
+            // 但是不需要阻止，因为点击完成自定义菜单上的操作后，自定义菜单会自动隐藏
+        })
+
+        // 通过给父级绑定事件，利用冒泡机制，用一个回调函数解决所有子元素的事件
+        list.addEventListener("click", function (evt) {
+            // 具体需要知道是点击的哪个li，可以通过事件委托来解决
+            console.log(evt.target);
+            
+            if (evt.target.className === "aaa") {
+                console.log("执行li1的操作")
+            } else if (evt.target.className === "bbb") {
+                console.log("执行li2的操作")
+            } else if (evt.target.className === "ccc") {
+                console.log("执行li3的操作")
+            }
+            
+        })
+    </script>
+</body>
+
+</html>

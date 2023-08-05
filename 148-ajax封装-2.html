@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="myget">get</button>
+    <button id="mypost">post</button>
+    <button id="myput">put</button>
+    <button id="mydelete">delete</button>
+    <button id="mypatch">patch</button>
+
+    <script src="./147-util.js"></script>
+    <script>
+        // get请求
+        myget.onclick = function () {
+            ajax({
+                url: "http://localhost:3000/users",
+                // 因为默认是get请求，所以可以省略method
+                data: {
+                    username: "alice",
+                    password: "123"
+                },
+                success: function (res) {
+                    console.log("success", res)
+                },
+                error: function (err) {
+                    console.log("error", err)
+                }
+            })
+        }
+
+
+        // post请求
+        mypost.onclick = function () {
+            ajax({
+                url: "http://localhost:3000/users",
+                method: "POST",
+                data: {
+                    username: "lucy",
+                    password: "999"
+                },
+                headers: {
+                    // "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
+                },
+                success: function (res) {
+                    console.log("success", res)
+                },
+                error: function (err) {
+                    console.log("error", err)
+                }
+            })
+        }
+
+
+        // put请求
+        myput.onclick = function () {
+            ajax({
+                // 修改id为1的用户
+                url: "http://localhost:3000/users/1",
+                method: "PUT",
+                data: {
+                    username: "alex",
+                    password: "123456"
+                },
+                headers: {
+                    // "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
+                },
+                success: function (res) {
+                    console.log("success", res)
+                },
+                error: function (err) {
+                    console.log("error", err)
+                }
+            })
+        }
+
+
+        // patch请求
+        mypatch.onclick = function () {
+            ajax({
+                // 局部修改id为1的用户
+                url: "http://localhost:3000/users/1",
+                method: "PATCH",
+                data: {
+                    username: "aaaaaaaa"
+                },
+                headers: {
+                    // "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
+                },
+                success: function (res) {
+                    console.log("success", res)
+                },
+                error: function (err) {
+                    console.log("error", err)
+                }
+            })
+        }
+
+
+        // delete请求
+        mydelete.onclick = function() {
+            ajax({
+                // 删除id为2的用户
+                url: "http://localhost:3000/users/2",
+                method: "DELETE",
+                // 不需要传data，也不需要设置header
+                success: function (res) {
+                    console.log("success", res)
+                },
+                error: function (err) {
+                    console.log("error", err)
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

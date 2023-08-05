@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="myget">get</button>
+    <button id="mypost">post</button>
+    <button id="myput">put</button>
+    <button id="mydelete">delete</button>
+    <button id="mypatch">patch</button>
+
+
+    <script>
+
+        // get
+        myget.onclick = function () {
+            var xhr = new XMLHttpRequest();
+
+            // xhr.open("GET", "http://localhost:3000/users?username=david")
+
+            // get也可以传参，参数写在地址栏后面，用?隔开，多个参数用&隔开，参数名=参数值，这也是get的缺点，参数明文显示在地址栏上，不安全
+            // xhr.open("GET", "http://localhost:3000/users?username=david")
+            xhr.open("GET", "http://localhost:3000/users?username=david&password=123")
+
+
+            xhr.onload = function () {
+                if (/^2\d{2}$/.test(xhr.status)) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+
+            xhr.send();
+        }
+
+
+        // post
+        mypost.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:3000/users")
+
+            xhr.onload = function () {
+                // 正则200-299表示成功
+                if (/^2\d{2}$/.test(xhr.status)) {
+                    // 这里之前收不到是因为查看了Network里面，这条请求，status code200
+                    // 改为正则 200-299就可以了
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+
+            // 提交信息
+            // setRequestHeader("Content-Type", ) 设置请求头, 用来告诉服务器发送的数据类型
+
+            // post name=alice&age=100, form编码格式
+            // xhr.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded")
+            // xhr.send(`username=david&password=123`);
+
+            // post {"name": "alice", "age": 100}, json 字符串
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(JSON.stringify({ username: "kevin", password: "789" }));
+
+            // 使用preivew on web server 打开，类似于live server，但是这种方式可以避免live server中的bug，不会刷新重新加载页面，实现页面的局部更新
+        }
+
+        // put
+        myput.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            // 此时需要告诉后端修改哪个信息，所以需要传递id，这里是json-server所以仅支持id，实际的要看后端
+            xhr.open("PUT", "http://localhost:3000/users/1")
+
+            xhr.onload = function () {
+                if (/^2\d{2}$/.test(xhr.status)) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+
+            // 用json 字符串的方法传递数据
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(JSON.stringify({ username: "jerry", password: "123456" }));
+
+            // 传过去的信息会覆盖原来所有的信息，所以如果传的不全，原来的信息就会丢失
+        }
+
+        // patch
+        mypatch.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            // 此时需要告诉后端修改哪个信息，所以需要传递id，这里是json-server所以仅支持id，实际的要看后端
+            xhr.open("PATCH", "http://localhost:3000/users/2")
+
+            xhr.onload = function () {
+                if (/^2\d{2}$/.test(xhr.status)) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+
+            // 用json 字符串的方法传递数据
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(JSON.stringify({ username: "oliver" }));
+
+            // 因为是部分修改，所以只需要传递修改的信息，不需要传递全部信息，传的不全，也不会丢失信息
+        }
+
+
+        // delete
+        mydelete.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            // 此时需要告诉后端删哪个信息，所以需要传递id，这里是json-server所以仅支持id，实际的要看后端
+            xhr.open("DELETE", "http://localhost:3000/users/1")
+
+            xhr.onload = function () {
+                if (/^2\d{2}$/.test(xhr.status)) {
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+
+            xhr.send();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // + - * / %
+        var a = 10 
+        var b = 20
+        console.log(a + b); // 30
+        
+
+        var c = 10 
+        var d = true // 加法中会把true转换成1，false转换成0
+        console.log(c + d); // 11
+
+        var e = 10
+        var f = 3
+        console.log(a % b); // 1
+
+        // 1000 分钟 转换成 小时：分钟
+        var mins = 1000
+        var h = parseInt(mins / 60)
+        var m = mins % 60
+        console.log(h + ":" + m); // 16:40 
+
+        console.log(1 + "2" * 3 + 4); // 11 number 因为乘法非加法，转换成number
+        console.log("1" + "2" * 3 + 4); // 164 string 因为有字符串+拼接
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

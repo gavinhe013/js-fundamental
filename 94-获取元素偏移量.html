@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 500px;
+            height: 500px;
+            background-color: yellow;
+            overflow: hidden;
+        }
+
+        #myparent {
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+            overflow: hidden;
+        }
+
+        #child {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        div {
+            margin: 50px;
+        }
+
+        ul {
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            border: 10px solid black;
+            background-color: red;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="myparent">
+            <div id="child"></div>
+        </div>
+    </div>
+    
+
+    <ul id="list"></ul>
+
+    <script>
+        // offsetLeft: 获取元素左侧距离定位父级的偏移量
+        // offsetTop: 获取元素顶部距离定位父级的偏移量
+        console.log(child.offsetLeft, child.offsetTop); // 150 150
+        console.log(myparent.offsetLeft, myparent.offsetTop); // 100 100
+        console.log(box.offsetLeft, box.offsetTop); // 50 50 
+
+
+        /*  
+            offsetLeft, offsetTop
+            注意：
+                参考点：是定位父级，即有设置过position属性的父级元素，否则就会以body为参考点
+        */
+
+        // clientLeft: 获取元素内容和padding距离盒子自己左侧边缘的距离，即border宽度
+        // clientTop: 获取元素内容和padding距离盒子自己上侧边缘的距离，即border宽度
+        console.log(list.clientLeft); // 10 内容和padding距离盒子自己左侧边缘的距离，即border宽度
+        console.log(list.clientTop); // 10 内容和padding距离盒子自己上侧边缘的距离，即border宽度
+    </script>
+</body>
+</html>

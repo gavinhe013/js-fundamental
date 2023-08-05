@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outer {
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+            overflow: hidden;
+        }
+
+        #center {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        #inner {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="center">
+            <div id="inner"></div>
+        </div>
+    </div>
+    <script>
+        /* 
+            window
+            document
+            html
+            body
+            box_outer
+            box_center
+            box_inner
+            当元素触发一个事件的时候，其父元素也会触发相同的事件，父元素的父元素也会触发相同的事件
+        */
+
+        // inner.onclick = function () {
+        //     console.log("inner");
+        // }
+
+        // center.onclick = function () {
+        //     console.log("center");
+        // }
+
+        // outer.onclick = function () {
+        //     console.log("outer");
+        // }
+
+        // document.body.onclick = function () {
+        //     console.log("body");
+        // }
+
+        // document.documentElement.onclick = function () {
+        //     console.log("html");
+        // }
+
+        // document.onclick = function () {
+        //     console.log("document");
+        // }
+
+        // window.onclick = function () {
+        //     console.log("window");
+        // }
+
+
+        /* 
+             标准的dom事件流: 事件捕获阶段 > 目标阶段 > 事件冒泡阶段
+             捕获: window => document => body => outer
+             目标: inner
+             冒泡: outer => body => document => window
+
+             dom事件流的传播，是从外到内，从上到下，从父到子
+
+             
+             默认情况 只在冒泡阶段触发事件
+             按照dom2事件绑定，并进行配置，才能看到捕获的回调函数被触发
+
+
+             ie低版本
+             只支持冒泡
+        */
+        
+
+        // 默认的dom2事件绑定的第3个参数默认是false，表示在冒泡阶段触发事件
+        inner.addEventListener("click", function () {
+            console.log("inner");
+        }, false);
+
+        center.addEventListener("click", function () {
+            console.log("center");
+        }, false);
+
+        outer.addEventListener("click", function () {
+            console.log("outer");
+        }, false);
+
+        document.body.addEventListener("click", function () {
+            console.log("body");
+        }, false);
+
+        document.documentElement.addEventListener("click", function () {
+            console.log("html");
+        }, false);
+
+        window.addEventListener("click", function () {
+            console.log("window");
+        }, false);
+
+        // 按照dom2事件绑定，把第3个参数改为true，表示在捕获阶段触发事件
+        inner.addEventListener("click", function () {
+            console.log("inner-capture");
+        }, true);
+
+        center.addEventListener("click", function () {
+            console.log("center-capture");
+        }, true);
+
+        outer.addEventListener("click", function () {
+            console.log("outer-capture");
+        }, true);
+
+        document.body.addEventListener("click", function () {
+            console.log("body-capture");
+        }, true);
+
+        document.documentElement.addEventListener("click", function () {
+            console.log("html-capture");
+        }, true);
+
+        window.addEventListener("click", function () {
+            console.log("window-capture");
+        }, true);
+    </script>
+</body>
+</html>

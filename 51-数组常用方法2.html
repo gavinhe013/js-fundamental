@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 下列方法不会对原数组产生影响
+
+
+
+        /* 
+            concat 拼接 arr1.concat(arr2. p) p是其他元素，在拼接后追加在尾部，p可以是多个元素，用，隔开
+            返回值为拼接后的结果
+        */
+
+        var arr1 = [1, 2, 3]
+        var arr2 = [4, 5, 6]
+
+        var concatRes = arr1.concat(arr2, 7, [8, 9])
+        console.log(arr1, arr2); // [1,2,3] [4,5,6]
+        console.log(concatRes); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+        var arr3 = arr1.concat() // arr.concat() 不设置参数可以实现数组拷贝，且不影响原数组，前提是数组内部存储的都是简单类型的元素
+        arr3.pop()
+        console.log(arr1, arr3); // [1,2,3] [1,2]
+
+
+        /* 
+            join 把数组内的元素拼接成字符串
+            arr.join("-") 用"-"把数组的元素拼接成字符串
+        */
+
+        var arr = [1, 2, 3, 4, 5]
+        document.write(arr.join("-")) // 1-2-3-4-5
+
+        var arr_li = []
+        for (var i = 0; i < 5; i++) {
+            arr_li.push("<li>" + i + "</li>")
+        }
+
+        document.write(arr_li.join("")) // 在页面中插入5个li标签
+
+
+        /* 
+            slice 截取，且并不影响原数组
+            返回值为截取的数组
+            arr.slice(start, end) 从原数组中截取 [start_index, end_index) 的数组
+            arr.slice(start) 从原数组中start_index位置开始截取后面所有元素的数组
+            arr.slice() 不传参数，相当于对原数组进行复制，且不影响原数组
+        */
+        
+        var arr_1 = ["aaa", "bbb", "ccc", "ddd", "eee"]
+
+        var arr_2 = arr_1.slice(0,2)
+        console.log(arr_1, arr_2); // ['aaa', 'bbb', 'ccc', 'ddd', 'eee'] ['aaa', 'bbb']
+
+        var arr_3 = arr_1.slice(1)
+        console.log(arr_1, arr_3); // ['aaa', 'bbb', 'ccc', 'ddd', 'eee'] ['bbb', 'ccc', 'ddd', 'eee']
+
+        var arr_4 = arr_1.slice()
+        console.log(arr_1, arr_4); // ['aaa', 'bbb', 'ccc', 'ddd', 'eee'] ['aaa', 'bbb', 'ccc', 'ddd', 'eee'] 
+
+        var arr_5 = arr_1.slice(2, -1) // 等同于从index=2开始到最后一个之前， -1表示最后一个index
+        console.log(arr_1, arr_5); // ['aaa', 'bbb', 'ccc', 'ddd', 'eee'] ['ccc', 'ddd']
+
+
+        /* 
+            indexOf 返回索引值
+            返回值为目标元素在原数组中第一次出现的索引值，如果不存在此元素，则返回-1
+            arr.indexOf(element)
+            arr.indexOf(element, start) 从index=start开始向后查找
+        */
+        var arr_a = ["aaa", "bbb", "ccc", "ddd", "aaa", "eee"]
+
+        var res1 = arr_a.indexOf("bb")
+        console.log(res1); // -1
+
+        var res2 = arr_a.indexOf("bbb")
+        console.log(res2); // 1
+
+        var res3 = arr_a.indexOf("aaa")
+        console.log(res3); // 0
+
+        var res4 = arr_a.indexOf("aaa", 2)
+        console.log(res4); // 4
+        
+
+
+        /* 
+            lastIndexOf 从后向前查找索引值
+            返回值为目标元素在原数组中从后向前第一次出现的索引值，如果不存在此元素，则返回-1
+            arr.lastIndexOf(element)
+            arr.lastIndexOf(element, start), 从index=start开始向前查找
+        */
+
+        var res5 = arr_a.lastIndexOf("aaa")
+        console.log(res5); // 4
+
+        var res6 = arr_a.lastIndexOf("aaa", 2)
+        console.log(res6); // 0
+        
+        var res7 = arr_a.lastIndexOf("xxx")
+        console.log(res7); // -1
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

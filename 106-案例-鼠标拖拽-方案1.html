@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <script>
+        box.onmousedown = function () {
+
+            document.onmousemove = function (evt) {
+                // 拖拽时，鼠标位于目标元素的中心位置
+                var x = evt.clientX - box.offsetWidth / 2;
+                var y = evt.clientY - box.offsetHeight / 2;
+
+                // 边界判断1: 是否超出上边界
+                if (y <= 0) {
+                    y = 0;
+                }
+
+                // 边界判断2: 是否超出左边界
+                if (x <= 0) {
+                    x = 0;
+                }
+
+                // 边界判断3: 是否超出右边界
+                if (x >= document.documentElement.clientWidth - box.offsetWidth) {
+                    x = document.documentElement.clientWidth - box.offsetWidth;
+                }
+
+                // 边界判断4: 是否超出下边界
+                if (y >= document.documentElement.clientHeight - box.offsetHeight) {
+                    y = document.documentElement.clientHeight - box.offsetHeight;
+                }
+
+                box.style.top = y + 'px';
+                box.style.left = x + 'px';
+            }
+        }
+
+
+
+
+        box.onmouseup = function () {
+            console.log('鼠标抬起了');
+            // 解绑，停止拖拽
+            document.onmousemove = null;
+
+        }
+    </script>
+</body>
+
+</html>

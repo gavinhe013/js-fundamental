@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>      
+        span {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            border: 1px solid #050505;
+            margin-left: -1px;
+            margin-top: -1px;
+            /* border-collapse: collapse; */
+        }
+    </style>
+
+    <script>
+        function test(target) {
+            // 给一个默认值
+            // 给提示警告
+            if (target === undefined) {
+                // alert("请传入参数")
+
+                // console.error("请传入参数"); // 输出错误
+
+                target = 9 // 设置默认值
+            }
+
+            for (var r = 1; r <= target; r++) {
+                for (var c = 1; c <= r; c++) {
+                    document.write("<span>" + c + " X " + r + " = " + (c*r) + "</span>")
+                }
+                document.write("<br>")
+            }
+        }
+
+        test(9)
+        test(6)
+        test(4)
+        test()
+
+
+
+
+        function add(x, y, z) {
+            var res = x + y + z
+            console.log(res);
+        }
+
+        add(1, 2, 3)
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

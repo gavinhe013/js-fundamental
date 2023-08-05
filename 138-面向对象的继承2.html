@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+        }
+
+        Person.prototype.say = function() {
+            console.log(this.name, "hello");
+        }
+
+
+        function Student(name, age, grade) {
+            Person.call(this, name, age)
+            this.score = grade
+        }
+
+        Student.prototype = new Person()
+
+        Student.prototype.printGrade = function() {
+            console.log(this.name, this.score);
+        }
+
+        // 通过直接调用父类的方法，实现对父类方法的增强，而不是覆盖
+        // 子类和父类同名方法功能不同，互不影响
+        Student.prototype.say = function() {
+            // 通过call方法，把父类的方法拿过来用，this指向子类的实例化对象
+            Person.prototype.say.call(this)
+            console.log("你好");
+        }
+
+    </script>
+</body>
+</html>

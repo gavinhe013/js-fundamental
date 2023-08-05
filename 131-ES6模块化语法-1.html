@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./131-ES6模块化语法js/js/131-A.js"></script>
+    <script src="./131-ES6模块化语法js/js/131-B.js"></script>
+    <!-- 3. 依赖混乱 -->
+    <script src="./131-ES6模块化语法js/js/131-C.js"></script> <!-- 因为C中调用了A和B中的方法，如果放在前面加载，会报错 -->
+</head>
+<body>
+    <script>
+        /* 
+            模块化
+                1. 秘密不漏
+                2. 重名不怕
+                3. 依赖不乱
+        */
+
+        //1. 私密性不好
+        A1()
+        A2()
+        // a_common() 本来是不想暴露的，但是仍可被外界访问到，私密性不好
+        // a_common() // a_common
+        // 可以通过给a_common函数前面加上下划线，来表示这个函数是私有的，不想被外界访问到 _a_common
+        // 但是如果调用_a_common() 还是可以访问到，只是一个约定，不是真正的私有
+
+        //2. 重名方法会被覆盖
+        test() // B1-test
+        // 因为B是在A后面加载进来的，所以同名的方法会被覆盖
+
+
+    </script>
+</body>
+</html>

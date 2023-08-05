@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="savebtn">存</button>
+    <button id="getbtn">获取</button>
+    <button id="delbtn">删除</button>
+
+    <script>
+        // http协议是无状态的，每次请求都是独立的，不会记录上一次的请求
+
+        // localStorage: 用户名密码？ token 钥匙 ==> Nodejs token认证
+
+        // cookie 本地存储，sessionID 钥匙 ==> Nodejs cookie+session认证
+
+
+        // cookie 本地存储
+
+        // 存cookie
+        // 在浏览器中的Application中的cookie中可以看到
+        savebtn.onclick = function () {
+            // 存key=value
+            // document.cookie = "username=alice"
+            // 如果对同一个key进行多次赋值，那么后面的值会覆盖前面的值，可以用于修改value
+
+            // 存多个key=value
+            document.cookie = "password=123456"
+
+            // 指定路径, 如果指定路径，那么只有在这个路径下才能访问到这个cookie，外层不能访问到内层路径，内层可以访问到外层路径
+            // document.cookie = "username=alice;path=/news"
+
+            // 指定过期时间
+            let date = new Date()
+            // 设置当前时间的1分钟后过期
+            date.setMinutes(date.getMinutes() + 1)
+            // 但是浏览器时间是UTC时间，所以要转换成UTC时间
+            document.cookie = `username=alice;expires=${date.toUTCString()}`
+            // 过期之后，cookie会自动删除
+
+
+
+        }
+
+        // 在Application中
+        // Domain: 域名
+        // Path: 路径
+        // Expires/Max-Age: 过期时间, 默认session，关闭浏览器就过期 （区别：localStorage 永久储存）
+        // Size: 大小
+        // HttpOnly: 只能通过http协议访问，后端可以设置，如果有这个属性，那么前端就不能通过js访问，没有的话，前端可以通过js访问
+
+
+        // 获取cookie
+        getbtn.onclick = function () {
+            // 读取cookie
+            console.log(document.cookie)
+            getCookie("password")
+        }
+
+        // 解析cookie，并根据key获取value
+        function getCookie(key) {
+            let str = document.cookie
+            let arr = str.split("; ")
+            let obj = {}
+            for (let i = 0; i < arr.length; i++) {
+                let subArr = arr[i].split("=")
+                obj[subArr[0]] = subArr[1]
+            }
+
+            return obj[key]
+        }
+
+
+        // 删除cookie
+        delbtn.onclick = function () {
+            let date = new Date()
+            // 设置当前时间的1分钟前过期，目的是立刻过期，这样cookie就会被删除
+            date.setMinutes(date.getMinutes() - 1)
+            // 这个时候存的cookie的value没有意义，可以是任意值，因为过期了，浏览器会自动删除
+            document.cookie = `username=aaa;expires=${date.toUTCString()}`
+            document.cookie= `password=111;expires=${date.toUTCString()}`
+        }
+
+        /* 
+            注意：
+                cookie只能存文本，不能存对象
+                单条大小4kb左右，一版浏览器限制大概50条左右
+                读取有域名限制，不能跨域读取，只能由来自写入cookie的同一域名的网页进行读取
+                时效限制，每个cookie都有时效，默认session级别（关闭浏览器，cookie立即销毁），也可以设置过期时间
+                路径限制，存cookie可以指定路径，只允许子路径读取外层cookie，外层不能读取内层
+
+        
+        */
+    </script>
+</body>
+
+</html>

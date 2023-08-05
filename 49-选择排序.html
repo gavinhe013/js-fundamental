@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 交换
+        function exchange(target_arr, index_a, index_b) {
+            var temp = target_arr[index_a]
+            target_arr[index_a] = target_arr[index_b]
+            target_arr[index_b] = temp
+        }
+
+        arr = [3, 4, 1, 5, 2, 6]
+
+        // 选择排序
+        for (var i = 0; i < arr.length - 1; i++) {
+            var min_index = i
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[min_index]) {
+                    min_index = j
+                }
+            }
+            if (min_index !== i) {
+                exchange(arr, min_index, i)
+            }
+
+        }
+
+        console.log(arr);
+    </script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

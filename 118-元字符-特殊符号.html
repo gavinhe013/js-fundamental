@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. () 作为整体
+        var reg = /^(abc){2}$/
+        console.log(reg.test('abc')) // false
+        console.log(reg.test('decc')) // false
+        console.log(reg.test('332abcc342')) // false
+        console.log(reg.test('abcabc')) // true
+
+
+        // 2. | 或
+        var reg1 = /a|b/
+        console.log(reg1.test('123')) // false
+        console.log(reg1.test('1a3')) // true
+        console.log(reg1.test('12b')) // true
+        console.log(reg1.test('1ab')) // true
+
+        var reg2 = /(abc|def)/
+        console.log(reg2.test('abcef')) // true
+        console.log(reg2.test('abdef')) // true
+        console.log(reg2.test('abe')) // false
+
+        var reg3 = /abc|def|xyz/ // | 左右整体
+        console.log(reg3.test('abcef')) // true
+        console.log(reg3.test('abdef')) // true
+        console.log(reg3.test('abxyz')) // true
+        console.log(reg3.test('abx')) // false
+
+
+        // 3. [] 代表一个字符, 只要满足中括号中的任意一个字符就可以
+        var reg4 = /[abcdef]/
+        console.log(reg4.test('x')) // false
+        console.log(reg4.test('xa')) // true
+        console.log(reg4.test('xb')) // true
+        console.log(reg4.test('xabc')) // true
+
+        var reg5 = /[abcdef]{3,5}/ // []其中的字符作为一个字符重复至少3-5次
+        console.log(reg5.test('abcd')) // true
+        console.log(reg5.test('abcde')) // true
+        console.log(reg5.test('abcdef')) // true
+        console.log(reg5.test('abaaafg')) // true
+        console.log(reg5.test('ab')) // false
+
+        // [a-zA-Z0-9_] 字母数字下划线 等价于 \w， -表示范围，可自定义范围
+        // [0-9] 数字 等价于 \d
+
+
+        // 4. [^] 取反，只要有一个不在中括号中的字符就可以
+        var reg6 = /[^abc]/
+        console.log(reg6.test('a')) // false
+        console.log(reg6.test('xyz')) // true
+        console.log(reg6.test('abz')) // true
+
+    </script>
+</body>
+</html>

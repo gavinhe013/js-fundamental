@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box1">
+        <h1></h1>
+        <ul></ul>
+    </div>
+
+    <div class="box2">
+        <h1></h1>
+        <img src="" style="width: 100px;" alt="img">
+        <ul></ul>
+    </div>
+
+
+    <script>
+        var data1 = {
+            title: "体育",
+            list: ["体育-1", "体育-2", "体育-3"]
+        }
+
+        var data2 = {
+            title: "综艺",
+            url: "https://cdn.eventcinemas.com.au/cdn/resources/movies/16704/images/largeposter.jpg",
+            list: ["综艺-1", "综艺-2", "综艺-3"]
+        }
+
+        class CreateList {
+            constructor(select, data) {
+                this.ele = document.querySelector(select);
+                this.title = data.title;
+                this.list = data.list;
+
+                // 在实例化的时候，就自动调用render方法
+                this.render();
+            }
+            render() {
+                var h1 = this.ele.querySelector("h1");
+                var ul = this.ele.querySelector("ul");
+
+                h1.innerHTML = this.title;
+                ul.innerHTML = this.list.map(item => `<li>${item}</li>`).join("");
+            }
+        }
+
+        var obj1 = new CreateList(".box1", data1);
+
+
+        
+
+        // CreateImgList继承CreateList
+        class CreateImgList extends CreateList {
+            constructor(select, data) {
+                // 继承父类属性
+                super(select, data);
+                // 添加自己的属性
+                this.imgUrl = data.url;
+
+                // 在实例化的时候，就自动调用render方法
+                this.render();
+            }
+
+            // 增强父类方法
+            render() {
+                // 调用父类方法
+                super.render();
+                // 添加自己的功能增强
+                var img = this.ele.querySelector("img");
+                img.src= this.imgUrl
+            }
+        }
+
+        var obj2 = new CreateImgList(".box2", data2);
+        console.log(obj2);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+            形参，在定义函数的时候设置的参数
+            实参，在调用函数的时候传入的参数
+        */
+
+        function test(a, b) {
+            console.log("this is function test", a, b);
+        }
+
+        test() // this is function test undefined undefined
+        test(1,2) // this is function test 1 2
+
+
+
+
+        function order(a, b) {
+            var drink = a === 1 ? "Coke" : "Sprite"
+            var side = b === 1 ? "Chips" : "Coleslaw"
+            var main = "Burger"
+            console.log("this is orderA", main, drink, side);
+        }
+
+        order(1, 2) // this is orderA Burger Coke Coleslaw
+        order(2, 1) // this is orderA Burger Sprite Chips
+        order() // this is orderA Burger Sprite Coleslaw
+
+        console.log(a, b) // 报错，函数外部无法调用形参
+        /* 
+            1. 实参 vs 形参
+            2. 可以传参，也可以不传参
+            3. 形参只能在函数内部去使用， 在外部调用会报错
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="myusername">
+    <input type="password" id="mypassword">
+    <button id="mybtn">login</button>
+
+    <script>
+        mybtn.onclick = function () {
+            let username = myusername.value
+            let password = mypassword.value
+
+            console.log(username, password);
+
+            // 发送给后端的数据, 以对象的形式
+            // 在key和value的名字一样的情况下，可以简写，只写一个
+            let obj = {
+                username,
+                password
+            }
+
+            console.log("发给后端的解构", obj);
+        }
+
+
+        // 简写对象中的函数
+        // var obj2 = {
+        //     a: 1,
+        //     getName: function () {
+        //         console.log(this.a);
+        //     }
+        // }
+        // obj2.getName() // 1
+
+        // 简写
+        var obj2 = {
+            a: 1,
+            // 省略: function
+            getName() {
+                console.log(this.a);
+            }
+        }
+        obj2.getName() // 1
+    </script>
+</body>
+
+</html>

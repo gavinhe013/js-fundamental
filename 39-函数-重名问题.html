@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var myname = "alice"
+        var myname = "bob"
+        console.log(myname); // bob 后面的会覆盖前面的
+
+
+
+
+        test() // test2 后面的会覆盖前面的
+
+        function test() {
+            console.log("test1");
+        }
+
+        function test() {
+            console.log("test2");
+        }
+
+        test() // test2 后面的会覆盖前面的
+
+
+        
+
+        // 变量名和函数名重复
+
+        age() // age is 100
+
+        var age = 100
+
+        function age() {
+            console.log("age is 100");
+        }
+
+        age() // 报错 age is not a function
+
+
+        /* 
+            实际顺序：
+                var age
+                function age() {}
+
+                age()
+                age = 100
+                // 此时调用age() 报错 age is not a function
+        
+        */
+
+    </script>
+
+    <script>
+        // 变量提升只能提升一个script标签，所以之前的age()还是输出之前的结果， 提升的时候跨不了标签
+        function age() {
+            console.log("age is 200");
+        }
+    </script>
+    
+    <script>
+        function test(a, b) {
+            var result = a + b
+            console.log("test", result);
+        }
+
+        test(1, 2) // test 3
+        console.log(result); // 报错 result is not defined, 因为函数里面的var定义的函数只能提到函数的最前面
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

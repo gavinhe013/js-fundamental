@@ -1,0 +1,76 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 3000px;
+            height: 3000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="height: 300px; width: 100px;"></div>
+    <button id="btn">回到顶部</button>
+
+    <script>
+        // document.docuemntElement.scorllTop 下拉拖动滚动条，滚上去的距离
+
+        /*   
+          console.log(document.documentElement.scrollTop);
+          window.onscroll = function () {
+              console.log(document.documentElement.scrollTop);
+          } 
+          */
+
+
+        // 如果没有<!DOCTYPE html>标签，document.docuemntElement.scorllTop就会失效，低版本没有此标签
+        // document.body.scorllTop 此时用body生效
+
+        /* console.log(document.body.scrollTop);
+        window.onscroll = function () {
+            console.log(document.body.scrollTop);
+        }  */
+
+
+        // 所以为了兼容所有html版本，最好写成
+        window.onscroll = function () {
+            console.log(document.documentElement.scrollTop || document.body.scrollTop);
+            // 两个只要有一个生效就可以
+
+
+            // 横向 document.documentElement.scrollLeft ||  document.body.scrollLeft
+
+            console.log(document.documentElement.scrollLeft || document.body.scrollLeft);
+            // 两个只要有一个生效就可以
+
+
+            if ((document.documentElement.scrollTop || document.body.scrollTop) > 100) {
+                console.log("显示回到顶部按钮");
+            } else {
+                console.log("隐藏回到顶部按钮");
+            }
+        }
+
+
+        // window.scrollTo() 页面滚动到目标位置
+        btn.onclick = function() {
+            // 1. 传入两个数字， x轴，y轴 目标位置
+            // window.scrollTo(0, 0)
+            
+            // 2. 传入对象 {left: , right: }
+            window.scrollTo({
+                left: 0,
+                top: 0
+            })
+
+        }
+    </script>
+</body>
+
+</html>

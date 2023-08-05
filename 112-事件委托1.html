@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li>
+            111111
+            <button>add</button>
+        </li>
+    </ul>
+
+
+    <script>
+        /* 
+            事件委托就是把子元素的事件委托给父元素解决
+
+            因为冒泡机制，点击子元素，父元素也会触发相同事件
+            所以可以把子元素的事件委托给父元素，让父元素来处理，从而可以减少性能损耗，避免大量的事件绑定
+        */
+
+        // evt.target 表示的是当前触发事件的元素，事件源头
+        // 为了兼容IE8，使用evt.srcElement
+        list.onclick = function(evt) {
+            console.log(evt.target || evt.srcElement);
+        }
+
+        // 减少多个函数绑定的性能损耗
+        // 动态添加li，也会有事件处理
+        
+    </script>
+</body>
+</html>

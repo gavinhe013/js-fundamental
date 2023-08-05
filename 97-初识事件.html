@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        aaaa
+    </div>
+
+
+    <div id="box2">
+        bbbb
+    </div>
+
+
+    <script>
+        // DOM0 类型绑定事件
+        // 给box绑定一个点击事件
+        box.onclick = function () {
+            console.log("11111");
+        }
+
+        box.onclick = function () {
+            console.log("22222");
+        }
+        // DOM0 类型 - 后面的会覆盖前面的
+
+
+        // DOM2 类型绑定事件，绑定多个事件处理函数，按顺序依次执行
+        // 给box2绑定一个点击事件
+        // addEventListener(事件类型, 事件处理函数, 是否捕获)
+        box2.addEventListener("click", function () {
+            console.log("33333a");
+        })
+
+        box2.addEventListener("click", function () {
+            console.log("33333b");
+        })
+
+        box2.addEventListener("click", function () {
+            console.log("33333c");
+        })
+
+        // DOM2 兼容性， 对于低版本浏览器
+        // box2.attachEvent("onclick", function () {
+        //     console.log("44444a");
+        // })
+        // box2.attachEvent("onclick", function () {
+        //     console.log("44444b");
+        // })
+        // box2.attachEvent("onclick", function () {
+        //     console.log("44444c");
+        // })
+    </script>
+</body>
+
+</html>

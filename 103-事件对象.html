@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="username">
+
+    <div id="box"></div>
+ 
+    <script>
+        // 每一个事件都有一个对应的对象描述事件的相关信息，这个对象叫做事件对象
+
+                                    // 形参无所谓，自动会把事件对象作为参数传进来，这个形参可自由定义，一般用evt，e，event
+        username.onkeyup = function(evt) {
+            // keyCode 查看具体是哪一个键
+            console.log(evt.keyCode);
+            if (evt.keyCode === 13) {
+                console.log("回车键");
+            }
+        }
+
+        box.onclick = function(evt) {
+            // 为了兼容IE 678， 事件对象仅支持写window.event
+            evt = evt || window.event
+            
+            // 鼠标点击事件对象
+            console.log(evt);
+        }
+
+        
+    </script>
+</body>
+</html>

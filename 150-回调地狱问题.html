@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./150-util.js"></script>
+    <script>
+        ajax({
+            url: "http://localhost:3000/news",
+            data: {
+                author: "alice"
+            },
+            success: function (res) {
+                console.log(res[0]);
+
+                // 找到具体的文章之后，然后再去请求评论
+                ajax({
+                    url: "http://localhost:3000/comments",
+                    data: {
+                        newsId: res[0].id
+                    },
+                    success: function (res) {
+                        console.log(res);
+
+                        // 回调函数嵌套太多，就是回调地狱
+                        // ajax()
+                        // 回调地狱会导致代码可读性变差，维护成本变高
+                        // 不只是ajax，所有的异步操作都会有这个问题
+                        // 为了解决这个问题，就有了Promise构造函数来解决回调地狱问题 （aka 回调金字塔）
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

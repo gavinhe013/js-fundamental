@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>111111</li>
+        <li>111111</li>
+        <li>111111</li>
+        <li>111111</li>
+        <li>111111</li>
+    </ul>
+
+    <h1>修改</h1>
+    <input type="text" id="myusername">
+    <input type="number" id="myage">
+    <button id="btn">修改</button>
+    <div id="box"></div>
+
+
+
+    <script>
+        // ...
+
+        var a = [1, 2, 3]
+        var b = [4, 5, 6]
+        console.log(a.concat(b)); // [1, 2, 3, 4, 5, 6]
+
+        // ES6展开运算符
+        var c = [...a, ...b]
+        console.log(c); // [1, 2, 3, 4, 5, 6]
+
+
+        // 修改数组内的内容
+        var a1 = [1, 2, 3]
+        // 为了避免修改原数组，可以先深拷贝一份
+        // var b1 = a.concat()
+        // b1[0] = 100
+        // console.log(a1, b1); // [1, 2, 3] [100, 2, 3]
+
+        // 使用...展开运算符进行深拷贝, 但是只能拷贝一层
+        var b1 = [...a1]
+        b1[0] = 100
+        console.log(a1, b1); // [1, 2, 3] [100, 2, 3]
+
+
+        // ...参数-实参-形参
+
+        // 形参
+        var test = function (...args) {
+            console.log(args);
+        }
+
+        test(1, 2, 3, 4, 5) // [1, 2, 3, 4, 5]
+
+        var test1 = (...args) => {
+            console.log(args);
+        }
+
+        test1(1, 2, 3, 4, 5) // [1, 2, 3, 4, 5]
+
+        var test2 = function (a, b, ...args) {
+            console.log(args); // 捕获剩余参数
+        }
+
+        test2(1, 2, 3, 4, 5) // [3, 4, 5]
+
+        // 实参
+        var arr = [1, 2, 3]
+        var test3 = function (a, b, c) {
+            console.log(a, b, c);
+        }
+
+        test3(1, 2, 3) // 1 2 3
+
+        var arr1 = [1, 2, 3, 5, 3, 6.4, 8]
+        var res = Math.max(...arr1)
+        console.log(res); // 8
+
+
+        // ...伪数组转换
+        function test4() {
+            // var arr_args = Array.from(arguments)
+            var arr_args = [...arguments]
+            console.log(arr_args);
+        }
+        test4(1, 2, 3, 4, 5) // [1, 2, 3, 4, 5]
+
+        var oli = document.querySelectorAll('li')
+        console.log(oli); // NodeList(5) [li, li, li, li, li] 伪数组，所以没办法使用filter map等方法
+        var oliarr = [...oli]
+        console.log(oliarr.filter); // ƒ filter() { [native code] } 转换成数组后就可以使用filter map等方法了
+
+
+        // ...对象
+        var obj1 = {
+            name: "alice",
+            age: 100
+        }
+        var obj2 = {
+            name: "bob",
+            location: "beijng"
+        }
+        // 合并对象
+        var obj = { ...obj1, ...obj2 }
+        // 如果有相同的属性，后面的会覆盖前面的
+        console.log(obj); // {name: "bob", age: 100, location: "beijng"}
+
+
+        // 假设后端返回的数据如下
+        var obj_example = {
+            name: "alice",
+            age: 100,
+            location: "sydney",
+            id: "1231231412"
+        }
+        // id不需要显示，其他都需要显示
+        // 渲染信息
+        function render({ name, age, location }) {
+            // var { name, age, location } = obj
+            box.innerHTML = `name:${name}, age:${age}, location:${location}`
+        }
+        render(obj_example)
+
+        // 修改name, age
+        btn.onclick = function () {
+            var name = myusername.value || obj_example.name // 如果输入为空，就使用原来的值
+            var age = myage.value || obj_example.age // 如果输入为空，就使用原来的值
+
+            var newobj = {
+                ...obj_example,
+                // 覆盖原来的name, age
+                name,
+                age
+            }
+
+            console.log(newobj)
+            // 发送给后端
+            // 重新渲染页面
+            render(newobj)
+        }
+    </script>
+</body>
+
+</html>

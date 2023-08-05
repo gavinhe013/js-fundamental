@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box"></div>
+
+    <ul>
+        <li class="newsitem">111</li>
+        <li class="newsitem">111</li>
+        <li class="newsitem">111</li>
+        <li class="newsitem">111</li>
+        <li class="newsitem">111</li>
+        <li class="newsitem">111</li>
+        <li class="newsitem">111</li>
+    </ul>
+
+    <ul>
+        <li class="aditem">111</li>
+        <li class="aditem">111</li>
+        <li class="aditem">111</li>
+        <li class="aditem">111</li>
+        <li class="aditem">111</li>
+        <li class="aditem">111</li>
+        <li class="aditem">111</li>
+    </ul>
+
+    <input type="text" name="username">
+    <input type="password" name="password">
+
+    <script>
+        // console.log(box); // <div id="box"></div>
+        // box.innerHTML = "11111" // 给box对象添加key值，向box中添加内容
+
+
+        /* 
+            html, head, body 非常规
+
+            常规方案 => 根据id,class...
+        */
+
+        // 1. 非常规
+
+        // 获取html节点 document.documentElement
+        console.log(document.documentElement); // 获取DOM最外层节点，设置根节点font-size可能会用到 rem
+        // 获取head部分 document.head
+        console.log(document.head); // 获取head部分，可能会动态的设置viewport标签
+        // 获取body部分 document.head
+        console.log(document.body);
+
+
+
+        // 2. 常规
+
+        // 通过id获取元素 document.getElementByID("id") 标准方法
+        console.log(document.getElementById("box"));
+        var obox = document.getElementById("box")
+        obox.innerHTML = "111111111"
+
+        // 通过class获取元素 document.getElementBy("class")
+        var items = document.getElementsByClassName("newsitem")
+        console.log(items); // 伪数组，长得像数组
+
+        items[0].innerHTML = "news-1"
+
+            // 通过for 循环对伪数组直接进行操作
+        for (var i = 0; i < items.length; i++) {
+            items[i].innerHTML = "news-" + i
+        }
+
+            // Array.from() 把可迭代对象转换为数组, 通过常规数组的方式进行操作
+        var newitems = Array.from(items)
+        console.log(newitems); // 数组
+        console.log(newitems.filter); // 打印数组的方法 不调用
+
+        // 通过标签获取元素 document.getElementByTagName("tag")
+        var items1 = document.getElementsByTagName("li")
+        console.log(items1); // 伪数组
+
+        for (var i=0; i< items1.length; i++) {
+            items1[i].innerHTML = "NEWS-" + i
+        }
+
+        // 通过name获取元素， 表单元素，例如input标签，里面通常会用name属性
+        // document.getElementByName("name")
+        var item2 = document.getElementsByName("username")
+        console.log(item2); // 伪数组
+        console.log(item2[0]) // <input type="text" name="username">
+        item2[0].value = "alice" // 设置input的初始值
+
+
+
+        // 以下方法只兼容与新版本浏览器
+
+        // 通过CSS选择器语法规则获取指定元素
+        // document.querySelector("css选择器规则"), 只会返回一个对象，如果有多个结果，只会返回第一个 
+        var item3 = document.querySelector("#box")
+        console.log(item3); // <div id="box">111111111</div>
+
+        var item4 = document.querySelector("ul li")
+        console.log(item4); // <li class="newsitem">NEWS-0</li> 只返回第一个对象
+
+
+        // document.querySelectorAll("css选择器规则"), 返回指定css规则下的所有对象
+        var items5 = document.querySelectorAll("ul li")
+        console.log(items5); // 伪数组 length=14
+
+        var items6 = document.querySelectorAll("ul li.newsitem")
+        console.log(items6); // 伪数组 length=7
+    </script>  
+</body>
+
+</html>

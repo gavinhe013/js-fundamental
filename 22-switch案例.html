@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 满200减10 满100减5 满50减3
+        var sum = 120
+        var youhuisum
+        // 变量设置为true则一个一个向下判断
+        switch (true) {
+            case sum > 200:
+                youhuisum = sum - 10
+                break;
+            case sum >= 100 && sum < 200:
+                youhuisum = sum - 5
+                break
+            case sum >= 50 && sum < 100:
+                youhuisum = sum - 3
+                break
+            default:
+                youhuisum = sum
+                break;
+        }
+        console.log(sum, youhuisum); // 120 115
+        // 不推荐！！ 还是应该用if else
+
+
+
+        // 根据1-12的数字来输出一个月有多少天，不考虑闰年
+        var month = 12
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                console.log(31);
+                break;
+            case 2:
+                console.log(28);
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                console.log(31);
+                break
+            default:
+                console.log("wrong input");
+                break
+        }
+
+        
+        // 成绩案例改写switch
+        var score = 75
+        var flagScore = parseInt(score/10)
+        switch (flagScore) {
+            case 10:
+            case 9:
+                console.log("A");
+                break
+            case 8:
+                console.log("B");
+                break
+            case 7:
+                console.log("C");
+                break
+            case 6:
+                console.log("D");
+                break
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+            case 0:
+                console.log("E");
+                break
+            default:
+                console.log("wrong input");
+                break;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

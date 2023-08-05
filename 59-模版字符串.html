@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+     
+        var myhtml = "<li>111</li>\
+        <li>222</li>\
+        <li>333</li>"
+        document.write(myhtml)
+
+        // es6 - ``
+        var myhtml1 = `<li>111</li>
+        <li>222</li>
+        <li>333</li>`
+        document.write(myhtml1)
+
+        var myname = 'alice'
+        var str = `my name is ${myname} ${10+20} ${10>20? 'aaa':'bbb'}` // 在``字符串内，用${statement}可以把js statement作为变量传入进来
+        document.write(str) // my name is alice 30 bbb
+
+
+        var arr = ["alice", "bob", "clarie"]
+        var arr1 = arr.map(function(item) {
+            return `<li>${item}</li>`
+        })
+        console.log(arr1);
+        document.write(arr1.join(""))
+</script>
+</head>
+<body>
+    
+</body>
+</html>

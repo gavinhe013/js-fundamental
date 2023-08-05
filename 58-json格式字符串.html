@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 为了把字符串转成对象
+        var json_str = '{"name": "alice", "age": 100}'
+        console.log(json_str); // 字符串{"name": "alice", "age": 100}
+        console.log(json_str.name); // undefined
+        // 为了方便前后端交互数据信息，使用统一格式的数据格式传输对象，即json字符串
+
+
+        // JSON.parse(str)
+        // 把json格式字符串转换成对象
+        var obj = JSON.parse(json_str)
+        console.log(obj); // 对象{name: 'alice', age: 100}
+
+        /* 
+            注意
+                 json字符串中，key必须要带""
+                 '{"key1": value1, "key2": value2}'
+         */
+        
+
+        // JSON.stringify(obj)
+        // 把对象转换成json格式字符串
+        var obj1 = {name: "bob"}
+        var str1 = JSON.stringify(obj1)
+        console.log(obj1, str1); // {name: 'bob'} '{"name":"bob"}'
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

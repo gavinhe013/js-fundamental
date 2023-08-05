@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 增
+        var obj = {}
+        console.log(obj);
+        obj.name = "alice"
+        obj.age = 100
+        obj.location = "beijing"
+        console.log(obj);
+
+        // 查
+        document.write("name: " + obj.name)
+
+
+        // 改
+        obj.age = 200
+        console.log(obj);
+
+        // 删
+        delete obj.name // delete obj.key， 利用delete关键字
+        console.log(obj);
+
+
+
+        // 2-增
+        var obj2 = {}
+        obj2["name"] = "bob" // 这种方式，key一定要加引号
+        console.log(obj2);
+
+        // 2-查
+        console.log(obj2["name"]);
+
+        // 2-改
+        obj2["name"] = "claire"
+        console.log(obj2);
+
+        // 2-删
+        delete obj2["name"]
+        console.log(obj2);
+
+
+
+        // 区别
+        var myObj = {
+            "a+b": "1111",
+            "#aa": "2222"
+        }
+
+        // console.log(myobj."a+b"); // 报错
+        console.log(myObj["a+b"]); // 第二种方式可以对不符合命名规则的key进行访问
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            overflow: hidden;
+        }
+
+        li img {
+            float: left;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <!-- <li>
+            <img src="https://pic.maizuo.com/usr/movie/bc06a110cd9ffd00a09dfeaa9e6d3206.jpg?x-oss-process=image/quality,Q_70">
+            <h3>速度与激情10</h3>
+            <p>观众评分 7.5</p>
+        </li> -->
+    </ul>
+
+
+    <script>
+        // 假设这是后端传过来的对象数组
+        var filmList = [
+            {
+                url: "https://pic.maizuo.com/usr/movie/bc06a110cd9ffd00a09dfeaa9e6d3206.jpg?x-oss-process=image/quality,Q_70",
+                title: "速度与激情1",
+                grade: 7.5
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/57dfa764e5664645bd616110226c545f.jpg?x-oss-process=image/quality,Q_70",
+                title: "银河护卫队3",
+                grade: 7.6
+            },
+            {
+                url: "https://pic.maizuo.com/usr/movie/340a70a052cb16b3451d6bf4db8c61e1.jpg?x-oss-process=image/quality,Q_70",
+                title: "人生路不熟",
+                grade: 7.7
+            }
+        ]
+
+        var filmItems = filmList.map(function (item) {
+            return `<li>
+            <img src="${item.url}">
+            <h3>${item.title}</h3>
+            <p>观众评分 ${item.grade}</p>
+        </li>`
+        })
+
+        console.log(filmItems);
+
+        var oul = document.querySelector('ul')
+        // for (var i = 0; i < filmItems.length; i++) {
+        //     oul.innerHTML += filmItems[i]
+        // }
+        oul.innerHTML = filmItems.join('')
+    </script>
+</body>
+
+</html>

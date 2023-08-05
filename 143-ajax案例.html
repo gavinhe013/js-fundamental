@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">获取数据</button>
+    <ul id="mylist"></ul>
+
+
+    <script>
+        // http://www.xiongmaoyouxuan.com:80/api/tabs
+
+        btn.onclick = function () {
+
+            var xhr = new XMLHttpRequest();
+            // 先用本地的假的json数据结构来模拟实际的json数据结构，后面再用真实的地址来获取json数据
+            xhr.open("GET", "http://localhost:5500/143-data.json");
+            xhr.send();
+
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // console.log(xhr.responseText);
+                    var jsondata = JSON.parse(xhr.responseText);
+                    render(jsondata)
+                }
+            }
+        }
+
+        // 使用拿到的数据来渲染页面
+        function render(jsondata) {
+            // 要拿到jsondata中的data里的list数据，需要拿到list里面的每一项的 name 和 image
+            console.log(jsondata.data.list);
+            var html = jsondata.data.list.map(item =>
+                `<li>
+                    <img src="${item.imageUrl}">
+                    <div>${item.name}</div>
+                </li>`)
+
+            mylist.innerHTML = html.join("");
+        }
+    </script>
+</body>
+
+</html>

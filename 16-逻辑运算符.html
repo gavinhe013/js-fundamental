@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // &&
+        var a = true
+        var b = true
+        console.log(a && b); // true
+        
+        var category = "cloth"
+        var price = 300
+        console.log(category === "electronic" && price > 200); // false
+
+        // ||
+        var day = 7
+        console.log(day === 6 || day === 7); // true
+
+        // !
+        var c = true
+        console.log(!c); // false
+
+        var length = 0
+        console.log(length === 0); // true
+        console.log(!length); // true
+
+        console.log(!0); // true
+        console.log(!""); // true
+        console.log(!null); // true
+        console.log(!NaN); // true
+        console.log(!undefined); // true
+        console.log(!"1111"); // false
+
+        /* 
+            特殊：
+                1. !!a ==> 转换成boolean
+                2. && || 短路用法
+        */
+
+        // 1
+        var x = "1111"
+        console.log(Boolean(x)); // true
+        console.log(!!x); // true
+
+        // 2
+        var y 
+        // console.log(y.toString()); // 会报错, 之后的代码不会执行
+        console.log(y && y.toString()); // 如果y是false，后半部不会执行，这里就是undefined，短路执行，下面的代码还能执行
+        console.log(11111);
+
+        var y1 = 1000
+        // console.log(y.toString()); // 会报错, 之后的代码不会执行
+        console.log(y1 && y1.toString()); // 如果y是true, 执行后半部检验，后面也是true，执行后半部的结果 1000 字符串
+        console.log(11111);
+
+        var z = ""
+        console.log(z || "这个家伙很懒，什么也没有留下"); // 如果z是false，则需要执行后半部检验，后面内容是true，则执行后面内容 这个家伙很懒，什么也没有留下 字符串
+
+        var z1 = "hello"
+        console.log(z || "这个家伙很懒，什么也没有留下"); // 如果z是true，则不需要执行后半部，短路执行前半部，hello 字符串
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // charAt(索引) 返回索引对应的字符
+        var str = "alice"
+        var str1 = str.charAt(0)
+        console.log(str, str1); // alice a
+
+
+        // charCodeAt(索引) 返回索引对应的UTF-16码
+        var str2 = str.charCodeAt(0)
+        console.log(str2); // 97
+        // 通过字符编码创建一个包含A-Z的数组
+        var arr= []
+        for (var i = 65; i < 91; i++) {
+            arr.push(String.fromCharCode(i))
+        }
+        console.log(arr); // ['A', 'B', ... 'Z']
+
+        
+        // toUppperCase() 字符串变全大写 toLowerCase() 字符串变全小写
+        var word = "Hello"
+        console.log(str, word.toUpperCase()); // Hello HELLO
+        console.log(str, word.toLowerCase()); // Hello hello
+
+        
+        // 截取 
+        // substr(start_index, length) 从start_index开始，截取长度为length的字符串
+        // substring(start_index, end_index) 从start_index开始，截取到end_index之前一位的字符串 [start, end)
+            // substring(start_index) 从start_index开始一直截到结尾
+        // slice(start_index, end_index) 从start_index开始，截取到end_index之前一位的字符串 [start, end)
+            // slice(start_index) 从start_index开始一直截到结尾
+        var strr = "alice"
+        var strr1 = strr.substr(0, 2)
+        console.log(strr1); // al
+
+        var strr2 = strr.substring(1,2)
+        console.log(strr2); // l
+        var strr3 = strr.substring(1)
+        console.log(strr3); // lice
+
+        var strr4 = strr.slice(1,2)
+        console.log(strr4); // l
+        var strr5 = strr.slice(1)
+        console.log(strr5); // lice
+
+        var strr6 = strr.slice(1, -1) // slice 可以用负数的索引，但是substring不可以
+        console.log(strr6); // lic
+
+        // 首字母大写
+        var strr_firstCap = strr.substring(0, 1).toUpperCase() + strr.substring(1)
+        console.log(strr_firstCap);
+
+
+        // replace 替换, 全部替换可以使用正则表达式 (推荐)
+        // replace(char, replace_char) 把字符串中原有的char替换成replace_char，如果有多个char，则只能替换第一个 
+        var str_words = "abdwadwa"
+        var str_1 = str_words.replace("a", "*")
+        console.log(str_1); // *bdwadwa
+            // 用for循环全部替换
+        var str_2 = str_words
+        for (var i=0; i<str_words.length; i++) {
+            str_2 = str_2.replace("a", "*")
+        }
+        console.log(str_2); // *bdw*dw*
+
+
+        // split 分割
+        // split(char) 把字符串根据分隔符char分割成一个数组
+        // split("") 把字符串中每一个字符放到一个数组里
+        var str_3 = "a,b,c,d"
+        var arr1 = str_3.split(",")
+        console.log(arr1); // ['a', 'b', 'c', 'd']
+        var arr2 = str_3.split("")
+        console.log(arr2); // ['a', ',', 'b', ',', 'c', ',', 'd']
+
+
+        // indexOf 从前查索引
+        // lastIndexOf // 从后查索引
+        var str_4 = "abcda"
+
+        console.log(str_4.indexOf("b")); // 1
+        console.log(str_4.indexOf("z")); // -1
+        console.log(str_4.indexOf("a", 1)); // 4
+
+        console.log(str_4.lastIndexOf("d")); // 3
+        console.log(str_4.lastIndexOf("a")); // 4
+        console.log(str_4.lastIndexOf("a", 3)); // 0
+
+
+        // concat 拼接字符串
+        var str_5 = "abcd"
+        var str_6 = str_5.concat("efg") // 等同于 str_5 + "efg"
+        console.log(str_6); // abcdefg
+
+
+        // trim 去掉首尾空格
+        // trimStart() trimLeft() 去掉首空格
+        // trimEnd() trimRight() 去掉尾空格
+        var str_7 = "   hello world   "
+        console.log("|" + str_7.trim() + "|"); // |hello world|
+        console.log("|" + str_7.trimStart() + "|"); // |hello world   |
+        console.log("|" + str_7.trimLeft() + "|"); // |hello world   |
+        console.log("|" + str_7.trimEnd() + "|"); // |   hello world|
+        console.log("|" + str_7.trimRight() + "|"); // |   hello world|
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

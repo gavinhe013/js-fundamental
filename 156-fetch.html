@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="myget">get</button>
+    <button id="mypost">post</button>
+    <button id="myput">put</button>
+    <button id="mydelete">delete</button>
+    <button id="mypatch">patch</button>
+
+
+    <script>
+        // XMLHttopRequest 是一个设计粗糙的API，配置和调用非常混乱，而且基于事件的异步模型写起来不太友好
+        // 所以用fetch()代替XMLHttpRequest，（不是取代ajax）
+
+
+        // get请求
+        myget.onclick = function () {
+            // ajax({
+            //     url: "http://localhost:3000/users",
+            //     // 因为默认是get请求，所以可以省略method
+            //     data: {
+            //         username: "alice",
+            //         password: "123"
+            //     },
+            //     success: function (res) {
+            //         console.log("success", res)
+            //     },
+            //     error: function (err) {
+            //         console.log("error", err)
+            //     }
+            // })
+
+
+
+            // fetch 默认的是get请求
+
+            // 如果get传参，可以在url后面?添加
+            let username = "oliver"
+            fetch(`http://localhost:3000/users?username=${username}`)
+                .then(res => {
+                    if (res.ok) { // res.ok 为true，代表响应成功, false 代表响应失败
+                        return res.json() // res.json() 返回一个promise对象, json格式的数据，如果不是json格式的数据，会报错，res.text()返回的是字符串
+                    } else {
+                        // 如果请求失败，返回一个promise对象，状态为reject，主动拒绝承诺抛出错误, 使用 Promise.recject()方法 方法内可以传入一个对象，对象中可以包含错误信息
+                        // 主动兑现承诺的话，可以用 Promise.resolve()方法
+                        return Promise.reject({
+                            status: res.status,
+                            statusText: res.statusText
+                        })
+                    }
+                })
+                .then(res => {
+                    console.log("success", res)
+                }).catch(err => {
+                    console.log("error", err) // 如果请求失败，返回一个promise对象，状态为reject，catch可以捕获到
+                })
+            // 默认的.catch不能正确的捕获到网络错误，只能捕获到响应失败的错误，所以要手动的在第一个then中判断
+        }
+
+        // post请求
+        mypost.onclick = function () {
+            // ajax({
+            //     url: "http://localhost:3000/users",
+            //     method: "POST",
+            //     data: {
+            //         username: "lucy",
+            //         password: "999"
+            //     },
+            //     headers: {
+            //         // "Content-Type": "application/x-www-form-urlencoded"
+            //         "Content-Type": "application/json"
+            //     },
+            //     success: function (res) {
+            //         console.log("success", res)
+            //     },
+            //     error: function (err) {
+            //         console.log("error", err)
+            //     }
+            // })
+
+
+            fetch("http://localhost:3000/users", {
+                // 设置post请求
+                method: "POST",
+                headers: {
+                    // "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
+                },
+                // body: "username=jack&password=999"
+                body: JSON.stringify({
+                    username: "lucy",
+                    password: "666"
+                }) // 如果是json格式的数据，需要用JSON.stringify()转换成字符串
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+        }
+
+
+        // put请求
+        myput.onclick = function () {
+            // ajax({
+            //     // 修改id为1的用户
+            //     url: "http://localhost:3000/users/1",
+            //     method: "PUT",
+            //     data: {
+            //         username: "alex",
+            //         password: "123456"
+            //     },
+            //     headers: {
+            //         // "Content-Type": "application/x-www-form-urlencoded"
+            //         "Content-Type": "application/json"
+            //     },
+            //     success: function (res) {
+            //         console.log("success", res)
+            //     },
+            //     error: function (err) {
+            //         console.log("error", err)
+            //     }
+            // })
+
+
+            // 全局修改id为2的用户
+            fetch("http://localhost:3000/users/2", {
+                // 设置put请求
+                method: "PUT",
+                headers: {
+                    // "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
+                },
+                // body: "username=tom&password=1234"
+                body: JSON.stringify({
+                    username: "tom",
+                    // password: "1234" // 如果不传password，原先结果会被覆盖掉
+                }) // 如果是json格式的数据，需要用JSON.stringify()转换成字符串
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+        }
+
+
+        // patch请求
+        mypatch.onclick = function () {
+            // ajax({
+            //     // 局部修改id为1的用户
+            //     url: "http://localhost:3000/users/1",
+            //     method: "PATCH",
+            //     data: {
+            //         username: "aaaaaaaa"
+            //     },
+            //     headers: {
+            //         // "Content-Type": "application/x-www-form-urlencoded"
+            //         "Content-Type": "application/json"
+            //     },
+            //     success: function (res) {
+            //         console.log("success", res)
+            //     },
+            //     error: function (err) {
+            //         console.log("error", err)
+            //     }
+            // })
+
+
+            // 局部修改id为3的用户
+            fetch("http://localhost:3000/users/3", {
+                // 设置patch请求
+                method: "PATCH",
+                headers: {
+                    // "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
+                },
+                // body: "username=neo"
+                body: JSON.stringify({
+                    username: "neo" // 局部修改，只修改username
+                }) // 如果是json格式的数据，需要用JSON.stringify()转换成字符串
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+        }
+
+
+        // delete请求
+        mydelete.onclick = function () {
+            // ajax({
+            //     // 删除id为2的用户
+            //     url: "http://localhost:3000/users/2",
+            //     method: "DELETE",
+            //     // 不需要传data，也不需要设置header
+            //     success: function (res) {
+            //         console.log("success", res)
+            //     },
+            //     error: function (err) {
+            //         console.log("error", err)
+            //     }
+            // })
+
+
+            // 删除id为4的用户
+            fetch("http://localhost:3000/users/4", {
+                // 设置delete请求
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+        }
+    </script>
+
+</body>
+
+</html>

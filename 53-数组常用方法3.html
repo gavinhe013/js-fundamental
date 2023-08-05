@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // forEach遍历
+        var arr = ["aaa", "bbb", "ccc", "ddd"]
+        // 回调函数，给function传入function，传入的function不需要主动调用，会自动被外部的function调用
+        arr.forEach(function (item, index, arr) {
+            console.log(item, index, arr); // aaa 0 ['aaa', 'bbb', 'ccc', 'ddd'] bbb 1 ['aaa', 'bbb', 'ccc', 'ddd'] ccc 2 ['aaa', 'bbb', 'ccc', 'ddd'] ddd 3 ['aaa', 'bbb', 'ccc', 'ddd']
+        })
+
+
+        // map 映射, map会把原数组中的每一项拿出来放到方法内，return的就是每一项操作后的结果
+        var arr1 = [1, 2, 3, 4, 5]
+        var arr2 = arr1.map(function (item) {
+            return item ** 2
+        })
+        console.log(arr1, arr2); // [1, 2, 3, 4, 5] [1, 4, 9, 16, 25]
+
+
+        var arr_a = ["alice", "bob", "claire"]
+        var arr_b = arr_a.map(function (item) {
+            return "<li>" + item + "</li>"
+        })
+        document.write(arr_b.join(""))
+
+
+        // filter 过滤数据
+        var arr_1 = [100, 200, 300]
+        var arr_2 = arr_1.filter(function (item) {
+            // return true 把原数组复制一遍
+            // return false 原数组任何元素都没进来
+            return item > 200
+        })
+        console.log(arr_1, arr_2); // [100, 200, 300] [300]
+
+
+        var arr_obj1 = [
+            {
+                name: "aaa",
+                price: 100
+            },
+            {
+                name: "bbb",
+                price: 200
+            },
+            {
+                name: "ccc",
+                price: 300
+            }
+        ]
+        var arr_obj2 = arr_obj1.filter(function (item) {
+            return item.price > 100
+        })
+        console.log(arr_obj2); // [{name:'bbb', price:200}, {name:'ccc', price:300}]
+
+
+        // every 每一个元素是否都满足特定条件
+        var arr_grade = [80, 75, 92, 94]
+        var all_h1 = arr_grade.every(function (item) {
+            return item >= 80
+        })
+        console.log(all_h1); // false
+
+
+        // some 至少一个元素满足特定条件
+        var atLeastOne_h1 = arr_grade.some(function (item) {
+            return item >= 80
+        })
+        console.log(atLeastOne_h1); // true
+
+
+        // find 根据条件找到某一特定元素，如果有多个元素满足条件，则返回第一个
+        var arr_subject = [
+            {
+                name: "maths",
+                grade: 90
+            },
+            {
+                name: "statistics",
+                grade: 100
+            },
+            {
+                name: "economics",
+                grade: 90
+            }
+        ]
+        var target = arr_subject.find(function (item) {
+            return item.grade === 100
+        })
+        console.log(target); // {name: 'statistics', grade: 100}
+
+
+        // reduce 叠加
+        // reduce(回调函数, 初始值) 
+        var arr_x = [1, 2, 3, 4, 5]
+        var sum = arr_x.reduce(function (prev, item) {
+            return prev + item
+        }, 0)
+        console.log(sum); // 15
+        // 初始值 0 所以 prev 0， prev是上一次的结果
+        // prev 0 item 1
+        // prev 1 item 2
+        // prev 3 item 3
+        // prev 6 item 4
+        // prev 10 item 5
+        // prev 15
+
+        var product = arr_x.reduce(function (prev, item) {
+            return prev * item
+        }, 1)
+        console.log(product); // 120
+
+        var str = arr_x.reduce(function (prev, item) {
+            return prev + item
+        }, "")
+        console.log(str); // '12345'
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

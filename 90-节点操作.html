@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <div id="child">1111111</div>
+    </div>
+
+
+    <script>
+        // document.createElement("标签名") 创建一个元素节点
+        var odiv = document.createElement("div")
+        odiv.innerHTML = "我是新创建的元素节点"
+        odiv.className = "aaaa"
+        odiv.id = "aa"
+        odiv.style.backgroundColor = "red"
+        console.log(odiv);
+            /* 
+                <div style="background-color: red;" id="aa" class="aaaa">我是新创建的元素节点</div>
+            */
+
+        
+        // appendChild(节点对象) 给目标节点追加一个子节点
+        // box.appendChild(odiv)
+
+
+        // insertBefore(节点对象, 参考节点) 给目标节点插入一个子节点，插入在参考节点之前
+        box.insertBefore(odiv, child)
+
+
+        // removeChild(节点对象) 删除目标节点的一个子节点
+        // box.removeChild(child)
+
+        // remove() 删除目标节点以及其所有子节点
+        // box.remove()
+
+
+        // replaceChild(新节点, 旧节点) 替换目标节点的一个子节点
+        // var odiv2 = document.createElement("div")
+        // odiv2.innerHTML = "2222222"
+        // box.replaceChild(odiv2, child) // 此时child已经被替换成odiv2了
+
+
+        // cloneNode(true/false) 克隆一个节点，true表示克隆子节点，false表示不克隆子节点
+        var oCloneBox = box.cloneNode() // 默认参数为false，不克隆子节点
+        console.log(oCloneBox); // <div id="box">1111111</div>
+        var oCloneBox2 = box.cloneNode(true) // 克隆子节点
+        console.log(oCloneBox2); 
+                /* 
+                    <div id="box">
+                         <div class="aaaa" id="aa" style="background-color: red;">我是新创建的元素节点</div>
+                         <div id="child">1111111</div>
+                    </div>
+                */
+        oCloneBox2.id="box2"
+        document.body.appendChild(oCloneBox2)
+    </script>
+</body>
+</html>

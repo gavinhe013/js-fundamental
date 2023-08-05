@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="password" id="password">
+    <button id="eyebtn">eye</button>
+
+    <script>
+        // 1. 获取元素
+        var pwdInput = document.getElementById("password")
+        var eyeBtn = document.querySelector("#eyebtn")
+
+        // 2. 给eyebtn注册点击事件
+        eyeBtn.onclick = function() {
+            console.log(pwdInput.type); // password
+
+            if (pwdInput.type === "password") {
+                pwdInput.type = "text" // 如果当前input类型是password，就改成text，显示密码
+            } else {
+                pwdInput.type = "password" // 如果当前input类型不是password，就改成password，隐藏密码
+            }
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ^表示开头规则
+
+        // /^\d/ 以数字开头
+        var reg = /\d/ 
+        console.log(reg.test('1abc')) // true
+        console.log(reg.test('abc1')) // false
+
+        
+        // $表示结尾规则
+
+        // /\d$/ 以数字结尾
+        var reg1 = /\d$/
+        console.log(reg1.test('abc1')) // true
+        console.log(reg1.test('1abc')) // false
+
+
+        // ^开头结束$
+        var reg2 = /^abc$/
+        console.log(reg2.test('abc')) // true;
+        console.log(reg2.test('abcd')) // false
+        console.log(reg2.test('dabc')) // false
+        
+        var reg3 = /^a\dc$/
+        console.log(reg3.test('a1c')) // true
+        console.log(reg3.test('a2222c')) // false
+        console.log(reg3.test('a2ca1c')) // false
+
+    </script>
+</body>
+</html>

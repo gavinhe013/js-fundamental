@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var a = "aaaaaa"
+        // console.log(typeof a)
+        console.log(typeof(a)); // string
+        var b = 100
+        console.log(typeof(b)); // number
+        var c = true
+        console.log(typeof(c)); // boolean
+
+        console.log(typeof typeof a); // string
+
+
+        var d = 100
+        console.log(typeof d + 100); // number100, 涉及计算则会先判断第一个
+        console.log(typeof(d + 100)); // number， 推荐用这种更保险
+
+        var e = null
+        console.log(typeof(e)); // null 空对象
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

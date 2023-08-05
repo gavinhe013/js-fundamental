@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 因为在C中已经import了A和B的方法，所以此时C的加载位置不会影响依赖 -->
+    <!-- <script src="./131-ES6模块化语法js/module/131-C.js" type="module"></script> -->
+</head>
+<body>
+    <!-- <script>
+        /* 
+            模块化
+                1. 秘密不漏
+                2. 重名不怕
+                3. 依赖不乱
+        */
+    </script> -->
+
+    <!-- 
+        模块化的方法一定要在服务器环境下工作
+        所以要用live server打开，不能直接用浏览器打开，否则会报错
+     -->
+    
+
+    <!-- 模块化的导入 -->
+    <script type="module">
+        // 因为在C中已经import了A和B的方法，所以此时C的加载位置不会影响依赖
+        // 因为默认导出，所以可以随意命名
+        import CCC from "./131-ES6模块化语法js/module/131-C.js"
+
+        // 把需要的方法导入进来
+        // 此时因为私有的方法没有被导出，所以无法进行导入，也就无法使外部调用私有方法
+        import {
+            // 使用as关键字，可以给导入的方法起一个别名，避免重名问题
+            A1, A2, test as A_test
+        } from "./131-ES6模块化语法js/module/131-A.js"
+
+        import {
+            B1, B2, test as B_test
+        } from "./131-ES6模块化语法js/module/131-B.js"
+
+        
+
+        A1()
+        A2()
+
+        A_test()
+        B_test()
+
+        CCC()
+    </script>
+    
+</body>
+</html>

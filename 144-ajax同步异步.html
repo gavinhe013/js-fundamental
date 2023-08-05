@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        // 在一个服务器环境下，可以使用相对路径的地址
+        // true表示异步请求，false表示同步请求，回调函数异步还是同步
+        xhr.open("GET", "./144-1.json", false);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        }
+
+        xhr.send();
+
+        // xhr.onload = function () {
+        //     if (xhr.status === 200) {
+        //         console.log(xhr.responseText);
+        //     }
+        // }
+
+        console.log("11111111")
+
+        /* 
+        以上面为例
+            异步的话，不会阻塞后面的代码执行，直接输出11111111，不会被ajax过程阻塞，回调函数异步执行
+            同步的话，xhr.send()回阻塞回调函数，因为在send()完全执行完之后，数据返回，但是此时执行回调函数已经晚了，没接住数据，所以不会执行回调函数，所以结果只输出11111111
+            所以要想看到同步过程，就要把回调函数放在xhr.send()之前，这样就会阻塞后面的代码执行，此时先拿到数据，然后再输出11111111
+            
+            在网络环境比较差的情况下，异步有优势
+            同步的话会阻塞，性能不好
+        
+        */
+    </script>
+</body>
+
+</html>
